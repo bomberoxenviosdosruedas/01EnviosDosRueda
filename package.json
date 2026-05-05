@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
+    "dev": "tsx src/scripts/build-rules.ts && tsx src/scripts/build-rules.ts --validate",
+    "build": "tsx src/scripts/build-rules.ts",
     "start": "next start",
     "lint": "eslint",
     "genkit:dev": "genkit start -- tsx src/ai/dev.ts",
@@ -17,8 +17,12 @@
     "db:import": "bun prisma/script/subirtodo.ts",
     "clean": "rm -rf .next node_modules bun.lockb",
     "reinstall": "bun run clean && bun install",
-    "build:clean": "bun run clean && bun run build",
-    "typecheck": "tsc --noEmit"
+    "build:clean": "bun run clean && pnpm build",
+    "typecheck": "tsc --noEmit",
+    "validate": "tsx src/scripts/build-rules.ts --validate",
+    "extract-tests": "tsx src/scripts/build-rules.ts --extract-tests",
+    "next:dev": "next dev --turbopack",
+    "next:build": "next build"
   },
   "dependencies": {
     "@ducanh2912/next-pwa": "^10.2.9",
@@ -99,6 +103,7 @@
     "postcss": "^8.5.14",
     "prisma": "^7.8.0",
     "tailwindcss": "^3.4.19",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   },
   "trustedDependencies": [

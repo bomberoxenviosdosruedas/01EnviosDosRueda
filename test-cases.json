@@ -1,0 +1,8 @@
+[
+  {
+    "id": "1.1",
+    "title": "Parallelize Data Fetching",
+    "incorrect": "async function fetchData(userId: string) {\n  const user = await fetchUser(userId);\n  const posts = await fetchPosts(userId); // Waterfall: waits for fetchUser to finish\n  return { user, posts };\n}",
+    "correct": "async function fetchData(userId: string) {\n  const [user, posts] = await Promise.all([\n    fetchUser(userId),\n    fetchPosts(userId)\n  ]);\n  return { user, posts };\n}"
+  }
+]
