@@ -12,50 +12,39 @@ import type {
 import type { SaveShipmentInput, SaveShipmentResult } from '@/types/order-actions';
 
 
-// --- Google Maps API Helper ---
-const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-const MAR_DEL_PLATA_COMPONENT_FILTER = '&components=country:AR|administrative_area:Buenos%20Aires|locality:Mar%20del%20Plata';
-
+// --- Open Mapping Helpers (Nominatim & OSRM) ---
 interface GeocodeResult {
   lat: number;
   lng: number;
 }
 
-interface GoogleGeocodeResponse {
-  results: {
-    geometry: { location: GeocodeResult };
-    formatted_address: string;
-  }[];
-  status: string;
-  error_message?: string;
-}
+async function geocodeAddress(address: string, cityHint: string = "Mar del Plata"): Promise<GeocodeResult | null> {
+  const query = `${address}, ${cityHint}, Buenos Aires, Argentina`;
+  const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1&bounded=1&viewbox=-57.65,-38.08,-57.50,-37.90`;
 
-async function geocodeAddressWithGoogle(address: string, cityHint: string = "Mar del Plata"): Promise<GeocodeResult | null> {
-  if (!GOOGLE_MAPS_API_KEY || GOOGLE_MAPS_API_KEY === "YOUR_GOOGLE_MAPS_API_KEY" || GOOGLE_MAPS_API_KEY === "demo-key") {
-    console.warn(`Google Maps API key not configured or is placeholder. Geocoding for "${address}" skipped. Returning simulated coordinates for ${cityHint}.`);
-    // Simulate coordinates based on hints to distinguish them in tests
-    if (address.toLowerCase().includes("origen") || cityHint.toLowerCase().includes("origen")) return { lat: -38.0055, lng: -57.5426 }; // Simulated origin
-    if (address.toLowerCase().includes("destino") || cityHint.toLowerCase().includes("destino")) return { lat: -37.9948, lng: -57.5576 }; // Simulated destination
-    if (address.toLowerCase().includes("cliente") || cityHint.toLowerCase().includes("cliente")) return { lat: -38.0174, lng: -57.5209 }; // Simulated client address
-    return { lat: -38.0023, lng: -57.5575 }; // Default Mar del Plata
-  }
-  const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address + ", " + cityHint + ", Argentina")}${MAR_DEL_PLATA_COMPONENT_FILTER}&key=${GOOGLE_MAPS_API_KEY}`;
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      headers: {
+        'User-Agent': 'EnviosDosRuedas-App/1.0 (info@enviosdosruedas.com)',
+      },
+    });
+
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error(`Geocoding HTTP error for "${address}": ${response.status} ${response.statusText}. Response: ${errorText}`);
+      console.error(`Nominatim Geocoding HTTP error: ${response.status}`);
       return null;
     }
-    const data = await response.json() as GoogleGeocodeResponse;
-    if (data.status === 'OK' && data.results.length > 0) {
-      return data.results[0].geometry.location;
+
+    const data = await response.json();
+    if (Array.isArray(data) && data.length > 0) {
+      return {
+        lat: parseFloat(data[0].lat),
+        lng: parseFloat(data[0].lon),
+      };
     }
-    console.error(`Geocoding API error for "${address}": ${data.status} - ${data.error_message || 'No results'}`);
+
     return null;
-  } catch (error: unknown) {
-    const e = error instanceof Error ? error : new Error(String(error));
-    console.error(`Network error during geocoding for "${address}":`, e.message);
+  } catch (error) {
+    console.error(`Network error during geocoding for "${address}":`, error);
     return null;
   }
 }
@@ -113,7 +102,7 @@ export async function registerClient(input: RegisterClientInput): Promise<Regist
       }
     }
 
-    const coords = await geocodeAddressWithGoogle(validatedData.address, "cliente");
+    const coords = await geocodeAddress(validatedData.address, "cliente");
 
     const newClient = await prisma.client.create({
       data: {
@@ -153,15 +142,13 @@ export async function registerClient(input: RegisterClientInput): Promise<Regist
 
 
 // --- Shipment Quoting ---
-interface GoogleDirectionsResponse {
+interface OSRMRouteResponse {
+  code: string;
   routes: {
-    legs: {
-      distance: { text: string; value: number }; // value is in meters
-      duration: { text: string; value: number }; // value is in seconds
-    }[];
+    distance: number; // meters
+    duration: number; // seconds
+    geometry: string;
   }[];
-  status: string;
-  error_message?: string;
 }
 
 const quoteShipmentSchema = z.object({
@@ -174,45 +161,37 @@ export async function quoteShipment(input: QuoteShipmentInput): Promise<QuoteShi
   try {
     const validatedData = quoteShipmentSchema.parse(input);
 
-    const originCoords = await geocodeAddressWithGoogle(validatedData.originAddress, "origen");
+    const originCoords = await geocodeAddress(validatedData.originAddress, "Mar del Plata");
     if (!originCoords) return { success: false, error: `No se pudo geolocalizar la dirección de origen: ${validatedData.originAddress}` };
 
-    const destinationCoords = await geocodeAddressWithGoogle(validatedData.destinationAddress, "destino");
+    const destinationCoords = await geocodeAddress(validatedData.destinationAddress, "Mar del Plata");
     if (!destinationCoords) return { success: false, error: `No se pudo geolocalizar la dirección de destino: ${validatedData.destinationAddress}` };
     
     let distanceKm: number;
     let distanceText: string;
     let durationText: string;
     
-    if (!GOOGLE_MAPS_API_KEY || GOOGLE_MAPS_API_KEY === "YOUR_GOOGLE_MAPS_API_KEY" || GOOGLE_MAPS_API_KEY === "demo-key") {
-      console.warn("Google Maps API key not configured or is placeholder. Simulating directions for quote.");
-      // Simulate distance (e.g., between 1 and 15 km)
-      distanceKm = Math.random() * 14 + 1; 
-      distanceText = `${distanceKm.toFixed(1)} km (simulado)`;
-      durationText = `${Math.round(distanceKm * 5 + 5)} min (simulado)`; // Simulate duration
+    const directionsUrl = `https://router.project-osrm.org/route/v1/driving/${originCoords.lng},${originCoords.lat};${destinationCoords.lng},${destinationCoords.lat}?overview=full`;
 
-    } else {
-      const directionsUrl = `https://maps.googleapis.com/maps/api/directions/json?origin=${originCoords.lat},${originCoords.lng}&destination=${destinationCoords.lat},${destinationCoords.lng}&key=${GOOGLE_MAPS_API_KEY}&language=es`;
-      
-      const directionsResponse = await fetch(directionsUrl);
-      if (!directionsResponse.ok) {
-        const errorText = await directionsResponse.text();
-        console.error(`Google Directions API HTTP error: ${directionsResponse.status}. URL: ${directionsUrl}. Response: ${errorText}`);
-        return { success: false, error: `Error del API de Google Maps (status ${directionsResponse.status}): ${directionsResponse.statusText}` };
-      }
-
-      const directionsData = await directionsResponse.json() as GoogleDirectionsResponse;
-
-      if (directionsData.status !== 'OK' || !directionsData.routes || directionsData.routes.length === 0) {
-        console.error(`Google Directions API logical error. Status: ${directionsData.status}. Message: ${directionsData.error_message}`);
-        return { success: false, error: `No se pudo calcular la ruta: ${directionsData.error_message || directionsData.status}` };
-      }
-
-      const leg = directionsData.routes[0].legs[0];
-      distanceKm = leg.distance.value / 1000; // Convert meters to km
-      distanceText = leg.distance.text;
-      durationText = leg.duration.text;
+    const directionsResponse = await fetch(directionsUrl);
+    if (!directionsResponse.ok) {
+      console.error(`OSRM API HTTP error: ${directionsResponse.status}`);
+      return { success: false, error: "Servicio de mapas saturado momentáneamente (OSRM)." };
     }
+
+    const directionsData = await directionsResponse.json() as OSRMRouteResponse;
+
+    if (directionsData.code !== 'Ok' || !directionsData.routes || directionsData.routes.length === 0) {
+      console.error(`OSRM API logical error. Code: ${directionsData.code}`);
+      return { success: false, error: "No se pudo calcular la ruta entre los puntos indicados." };
+    }
+
+    const route = directionsData.routes[0];
+    distanceKm = route.distance / 1000; // Convert meters to km
+    distanceText = `${distanceKm.toFixed(1)} km`;
+
+    const durationMinutes = Math.round(route.duration / 60);
+    durationText = `${durationMinutes} min`;
     
     // Fetch price from database
     const priceRangeRecord = await prisma.priceRange.findFirst({

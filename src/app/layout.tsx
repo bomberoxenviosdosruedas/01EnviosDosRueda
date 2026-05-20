@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import { Roboto, Orbitron } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
+import "leaflet/dist/leaflet.css";
 import "./globals.css";
 
 

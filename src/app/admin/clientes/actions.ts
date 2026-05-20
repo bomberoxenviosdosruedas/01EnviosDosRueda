@@ -6,54 +6,40 @@ import prisma from '@/lib/prisma';
 import { Prisma } from '../../../../generated/prisma/client/client';
 import { revalidatePath } from 'next/cache';
 
-const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-
 interface GeocodeResult {
   lat: number;
   lng: number;
   formatted_address: string;
 }
 
-interface GoogleGeocodeResponse {
-  results: {
-    geometry: { location: { lat: number, lng: number } };
-    formatted_address: string;
-  }[];
-  status: string;
-  error_message?: string;
-}
-
 export async function geocodeAddress(address: string): Promise<{ success: boolean; data?: GeocodeResult; error?: string }> {
-  if (!GOOGLE_MAPS_API_KEY || GOOGLE_MAPS_API_KEY === 'YOUR_GOOGLE_MAPS_API_KEY') {
-    console.warn("Geocoding skipped: Google Maps API key not configured.");
-    // Simulate a successful response for development without a key
-    return { 
-        success: true, 
-        data: { 
-            lat: -38.0054, 
-            lng: -57.5426, 
-            formatted_address: `${address} (Ubicación Simulada)`
-        }
-    };
-  }
-
-  const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${GOOGLE_MAPS_API_KEY}&language=es&components=country:AR|administrative_area:Buenos%20Aires|locality:Mar%20del%20Plata`;
+  const query = `${address}, Mar del Plata, Buenos Aires, Argentina`;
+  const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1&addressdetails=1&bounded=1&viewbox=-57.65,-38.08,-57.50,-37.90`;
 
   try {
-    const response = await fetch(url);
-    const data: GoogleGeocodeResponse = await response.json();
+    const response = await fetch(url, {
+      headers: {
+        'User-Agent': 'EnviosDosRuedas-App/1.0 (info@enviosdosruedas.com)',
+      },
+    });
 
-    if (data.status === 'OK' && data.results.length > 0) {
+    if (!response.ok) {
+        return { success: false, error: "Error de comunicación con el servicio de geolocalización." };
+    }
+
+    const data = await response.json();
+
+    if (Array.isArray(data) && data.length > 0) {
       return {
         success: true,
         data: {
-          lat: data.results[0].geometry.location.lat,
-          lng: data.results[0].geometry.location.lng,
-          formatted_address: data.results[0].formatted_address,
+          lat: parseFloat(data[0].lat),
+          lng: parseFloat(data[0].lon),
+          formatted_address: data[0].display_name,
         },
       };
     } else {
-      return { success: false, error: data.error_message || `No se encontraron resultados para "${address}".` };
+      return { success: false, error: `No se encontraron resultados para "${address}" en Mar del Plata.` };
     }
   } catch (e: unknown) {
     const error = e instanceof Error ? e : new Error(String(e));

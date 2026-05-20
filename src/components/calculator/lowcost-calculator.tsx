@@ -3,8 +3,8 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { LocationAutocomplete } from '@/components/ui/location-autocomplete';
 import { Calculator, Loader2, PackageCheck, RotateCcw, ThumbsUp } from 'lucide-react';
 import React, { useState, FormEvent, useMemo } from 'react';
 import RouteMap from './route-map';
@@ -89,26 +89,18 @@ export default function LowCostCalculator() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
                 <Label htmlFor="origin" className="text-base font-sans">Dirección de Origen</Label>
-                <Input
-                  id="origin"
-                  type="text"
+                <LocationAutocomplete
                   placeholder="Ej: Av. Colón 1234, Mar del Plata"
-                  value={origin}
-                  onChange={(e) => setOrigin(e.target.value)}
-                  required
-                  className="text-base font-sans"
+                  onSelect={(lat, lng, address) => setOrigin(address)}
+                  className="font-sans"
                 />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="destination" className="text-base font-sans">Dirección de Destino</Label>
-                <Input
-                  id="destination"
-                  type="text"
+                <LocationAutocomplete
                   placeholder="Ej: Juan B. Justo 5678, Mar del Plata"
-                  value={destination}
-                  onChange={(e) => setDestination(e.target.value)}
-                  required
-                  className="text-base font-sans"
+                  onSelect={(lat, lng, address) => setDestination(address)}
+                  className="font-sans"
                 />
               </div>
               <Button type="submit" className="w-full text-base py-3 font-sans" size="lg" disabled={isCalculating}>
