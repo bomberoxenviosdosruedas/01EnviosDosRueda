@@ -18,22 +18,27 @@ export const metadata: Metadata = {
 export const revalidate = 3600;
 
 async function getPriceRanges(): Promise<PriceRangeClient[]> {
-  const priceRanges = await prisma.priceRange.findMany({
-    where: {
-      serviceType: ServiceTypeEnum.EXPRESS,
-      isActive: true,
-    },
-    orderBy: {
-      distanciaMinKm: 'asc',
-    },
-  });
+  try {
+    const priceRanges = await prisma.priceRange.findMany({
+      where: {
+        serviceType: ServiceTypeEnum.EXPRESS,
+        isActive: true,
+      },
+      orderBy: {
+        distanciaMinKm: 'asc',
+      },
+    });
 
-  return priceRanges.map(pr => ({
-    ...pr,
-    distanciaMinKm: pr.distanciaMinKm.toNumber(),
-    distanciaMaxKm: pr.distanciaMaxKm.toNumber(),
-    precioRango: pr.precioRango.toNumber(),
-  }));
+    return priceRanges.map(pr => ({
+      ...pr,
+      distanciaMinKm: pr.distanciaMinKm.toNumber(),
+      distanciaMaxKm: pr.distanciaMaxKm.toNumber(),
+      precioRango: pr.precioRango.toNumber(),
+    }));
+  } catch (error) {
+    console.error("Failed to fetch price ranges, falling back to empty array:", error);
+    return [];
+  }
 }
 
 export default async function EnviosExpressPage() {
