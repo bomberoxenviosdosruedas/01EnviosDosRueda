@@ -1,69 +1,70 @@
 {
-    "company_profile": {
-      "identity": {
-        "name": "EnviosDosRuedas",
-        "type": "LocalBusiness",
-        "slogan_principal": "Mensajería y Delivery Express en Mar del Plata",
-        "description": "Servicio confiable de mensajería y delivery en moto. Envíos express y low-cost para e-commerce, pymes y Mercado Libre Flex en Mar del Plata. Cotizá online."
+  "company_profile": {
+    "identity": {
+      "name": "Envíos DosRuedas",
+      "type": "LocalBusiness",
+      "slogan_principal": "Mensajería y Delivery Express en Mar del Plata",
+      "description": "Líderes en logística de última milla en Mar del Plata. Soluciones rápidas y confiables para empresas, e-commerce y particulares."
+    },
+    "location_contact": {
+      "primary_city": "Mar del Plata",
+      "address": {
+        "street": "Friuli 1972",
+        "city": "Mar del Plata",
+        "postal_code": "B7600",
+        "country_code": "AR"
       },
-      "location_contact": {
-        "primary_city": "Mar del Plata",
-        "address": {
-          "street": "11 de setiembre",
-          "city": "Mar del Plata",
-          "postal_code": "B7600",
-          "country_code": "AR"
-        },
-        "locale": "es_AR",
-        "phone": "+5492236602699",
-        "website_url": "https://www.enviosdosruedas.com"
-      },
-      "business_details": {
-        "services_summary": [
-          "mensajeria",
-          "delivery",
-          "envios en moto",
-          "cadeteria",
-          "envios express",
-          "envios low-cost",
-          "e-commerce",
-          "pymes",
-          "Mercado Libre Flex"
+      "locale": "es_AR",
+      "phone": "+54 223 660-2699",
+      "website_url": "https://www.enviosdosruedas.com"
+    },
+    "business_details": {
+      "services_summary": [
+        "Envíos Express",
+        "Envíos Low Cost",
+        "Envíos Flex MercadoLibre",
+        "Moto Fija para Negocios",
+        "Plan Emprendedores",
+        "Delivery Gastronómico"
+      ],
+      "price_range": "$$",
+      "opening_hours": {
+        "days": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
         ],
-        "price_range": "$$",
-        "opening_hours": {
-          "days": [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday"
-          ],
-          "opens": "09:00",
-          "closes": "18:00"
-        }
-      },
-      "branding": {
-        "colors": {
-          "theme_primary": {
-            "hex": "#1E40AF",
-            "description": "Azul oscuro/medio (usado para el theme-color del viewport)"
-          },
-          "palette_contextual": "Basado en los banners e imágenes, la paleta de marca también utiliza de forma prominente azules cian, amarillos vibrantes y naranjas como colores de acento y para llamadas a la acción (CTAs)."
-        },
-        "font_family": "Orbitron",
-        "logo_url": "https://www.enviosdosruedas.com/icons/icon-512x512.png",
-        "keywords": [
-          "envios dos ruedas",
-          "mensajeria mar del plata",
-          "delivery mar del plata",
-          "envios en moto",
-          "cadeteria mar del plata",
-          "envios flex",
-          "envios low cost",
-          "mensajeria express"
-        ]
+        "opens": "09:00",
+        "closes": "18:00"
       }
+    },
+    "branding": {
+      "colors": {
+        "theme_primary": {
+          "hex": "#2563EB",
+          "description": "Azul Primario (Navy-like Blue)"
+        },
+        "theme_secondary": {
+          "hex": "#E89A17",
+          "description": "Ámbar Corporativo (Vibrant Gold)"
+        },
+        "palette_contextual": "Combinación de Azul Marino (#2563EB) para confianza y Ámbar (#E89A17) para dinamismo."
+      },
+      "font_family": "Orbitron",
+      "logo_url": "https://www.enviosdosruedas.com/icons/icon-512x512.png",
+      "keywords": [
+        "envios dos ruedas",
+        "mensajeria mar del plata",
+        "delivery mar del plata",
+        "envios express",
+        "envios low cost",
+        "mercado libre flex",
+        "moto fija",
+        "3pl mar del plata"
+      ]
     }
   }
+}

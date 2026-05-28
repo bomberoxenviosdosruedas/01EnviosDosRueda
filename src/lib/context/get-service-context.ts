@@ -5,32 +5,31 @@ import enviosFlex from '@/lib/context/envios-flex';
 import enviosLowcost from '@/lib/context/envios-lowcost';
 import motoFija from '@/lib/context/moto-fija';
 import planEmprendedores from '@/lib/context/plan-emprendedores';
-import { serviceContextMap } from '@/lib/context/service-context-map';
 
 const contexts: Record<string, any> = {
-  'delivery-gastronomico': deliveryGastronomico,
-  'envios-express': enviosExpress,
-  'enviosflex': enviosFlex,
-  'envios-lowcost': enviosLowcost,
-  'moto-fija': motoFija,
-  'plan-emprendedores': planEmprendedores,
+  'Delivery Gastronómico': deliveryGastronomico,
+  'Envíos Express': enviosExpress,
+  'Envíos Flex MercadoLibre': enviosFlex,
+  'Envíos Low Cost': enviosLowcost,
+  'Moto Fija para Negocios': motoFija,
+  'Plan Emprendedores': planEmprendedores,
 };
 
 // Gets context based on service name (e.g., "Delivery Gastronómico")
 export function getServiceContext(serviceName: string): any | null {
-    const contextKey = Object.keys(serviceContextMap).find(key => serviceContextMap[key].name === serviceName);
-    if (!contextKey) return null;
-    return contexts[contextKey] || null;
+    return contexts[serviceName] || null;
 }
 
 // Gets context based on file path (e.g., 'src/app/servicios/delivery-gastronomico/page.tsx')
 export function getServiceContextFromPath(relativePath: string): any | null {
-    const pathSegments = relativePath.split('/');
-    const pageSegment = pathSegments[pathSegments.length - 2];
+    const contextMapByPath: Record<string, any> = {
+        'src/app/servicios/delivery-gastronomico/page.tsx': deliveryGastronomico,
+        'src/app/servicios/envios-express/page.tsx': enviosExpress,
+        'src/app/servicios/enviosflex/page.tsx': enviosFlex,
+        'src/app/servicios/envios-lowcost/page.tsx': enviosLowcost,
+        'src/app/servicios/moto-fija/page.tsx': motoFija,
+        'src/app/servicios/plan-emprendedores/page.tsx': planEmprendedores,
+    };
     
-    if (pageSegment && contexts[pageSegment]) {
-        return contexts[pageSegment];
-    }
-    
-    return null;
+    return contextMapByPath[relativePath] || null;
 }
