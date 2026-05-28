@@ -1,8 +1,6 @@
 'use server';
 /**
- * @fileOverview Flow to generate a detailed image prompt for a specific service.
- *
- * - generateServiceImagePrompt: A function that creates a prompt for an image generation model.
+ * @fileOverview Flow to generate a detailed image prompt for a specific service using the 5 Pillars Formula.
  */
 
 import { ai } from '@/ai/genkit';
@@ -10,19 +8,19 @@ import { z } from 'genkit';
 import companyProfile from '@/lib/empresa.json';
 
 const GenerateServiceImagePromptInputSchema = z.object({
-  serviceName: z.string().describe("The name of the service for which the image is being created."),
+  serviceName: z.string().describe("The name of the service."),
   serviceContext: z.string().describe("The full JSON context of the service."),
-  sectionType: z.string().describe("The intended use of the image, e.g., 'Banner Web (16:9)', 'Post Red Social (1:1)'."),
-  visualStyle: z.string().describe("The desired visual style, e.g., 'Fotografía Urbana y Cinematográfica'."),
+  sectionType: z.string().describe("The intended use of the image."),
+  visualStyle: z.string().describe("The desired visual style."),
   backgroundDetails: z.string().describe("AI-suggested details for the background."),
   contentDetails: z.string().describe("AI-suggested details for the main content."),
-  includeText: z.boolean().describe("Whether to include the service name as text in the image."),
-  includeBrand: z.boolean().describe("Whether to include the company name and phone number in the image."),
+  includeText: z.boolean().describe("Whether to include the service name text."),
+  includeBrand: z.boolean().describe("Whether to include the brand name and phone."),
 });
 type GenerateServiceImagePromptInput = z.infer<typeof GenerateServiceImagePromptInputSchema>;
 
 const GenerateServiceImagePromptOutputSchema = z.object({
-  prompt: z.string().describe("The final, detailed prompt for the image generation model."),
+  prompt: z.string().describe("The final prompt following the 5 Pillars Formula."),
 });
 type GenerateServiceImagePromptOutput = z.infer<typeof GenerateServiceImagePromptOutputSchema>;
 
@@ -43,48 +41,43 @@ const promptTemplate = ai.definePrompt({
   input: { schema: z.any() },
   output: { schema: GenerateServiceImagePromptOutputSchema },
   prompt: `
-    You are a world-class expert in "prompt engineering" for Google's most advanced image generation models (like Imagen or Gemini).
-    Your task is to create a highly detailed, effective, and professional prompt in English. The goal is to generate a superior quality image that is perfectly aligned with a brand's identity.
+    You are a world-class expert in prompt engineering for Google Flow image models.
+    Generate a highly professional image prompt strictly following the "5 Pillars Formula".
 
-    **Brand Identity Context:**
-    - Company: {{company.identity.name}}, a logistics company from {{company.location_contact.primary_city}}, Argentina.
-    - Vibe: Professional, trustworthy, modern, and friendly.
-    - Location: The image must subtly evoke a coastal city like {{company.location_contact.primary_city}} (e.g., include coastal roads, sea in the background, specific architectural styles).
-    - Color Palette: The scene must prominently and naturally feature the brand's colors: a primary blue (like {{company.branding.colors.theme_primary.hex}}) and a secondary vibrant yellow/orange (like #FBBF24).
+    **5 PILLARS FORMULA:**
+    [Subject + Adjetivos] haciendo [Acción] en [Ubicación/Contexto]. [Composición/Ángulo de Cámara]. [Iluminación/Atmósfera]. [Estilo/Medio]. [Restricción de Texto/Detalles Específicos].
 
-    **Text & Branding Rules (Apply these strictly):**
-    1.  {{#if includeText}}
-        **Service Name Text:** Include the text "{{serviceName}}" in the image. Use a bold, modern, tech-style font (similar to Orbitron). Apply a color scheme of white and yellow/orange to the words for high contrast and visual appeal (e.g., if text is "Envios Express", "Envios" could be white and "Express" yellow). The text must be perfectly integrated, legible, and stylish.
-        {{/if}}
-    2.  {{#if includeBrand}}
-        **Brand Name Text:** Also include the brand name "{{company.identity.name}}" and the phone number "{{company.location_contact.phone}}" in a smaller, clean, sans-serif font, tastefully placed in a corner.
-        {{/if}}
-    3.  {{#unless includeText}}{{#unless includeBrand}}
-        **No Text Rule:** Do NOT include any text, letters, logos, or writing of any kind in the image.
-        {{/unless}}{{/unless}}
+    **Brand Guidelines (Envíos DosRuedas):**
+    - Corporate Colors: Navy Blue (#2563EB) and Amber (#E89A17).
+    - Identity: Reliable, fast, industrial logistics from Mar del Plata.
 
-    **Creative Direction for the Image:**
-    Based on the user's request, you will generate a prompt that combines the following elements into a single, cohesive, and masterful instruction for the AI.
+    **Creative Inputs:**
+    - Service: {{serviceName}}
+    - Context: {{serviceContext}}
+    - Visual Style: {{visualStyle}}
+    - Background: {{backgroundDetails}}
+    - Main Content: {{contentDetails}}
+    - Aspect Ratio: {{aspectRatio}}
 
-    - **Service:** "{{serviceName}}". The entire concept must revolve around this service.
-    - **Visual Style:** "{{visualStyle}}". Use expert keywords to achieve this style.
-        - For 'Fotografía Urbana y Cinematográfica': use terms like "cinematic shot, urban environment, dynamic composition, photorealistic, DSLR, 8k, professional photography, soft natural lighting, long exposure for light trails at night".
-        - For 'Ilustración Vectorial Infográfica': use terms like "clean vector illustration, infographic style, isometric perspective, corporate branding, data visualization elements, simplified characters".
-        - For 'Render 3D Promocional': use terms like "3D render, promotional style, hyper-detailed, Unreal Engine 5, octane render, clean product shot, dynamic lighting".
-        - For 'Fotografía Humanizada (con Enfoque Minimalista)': use terms like "warm and authentic photography, shallow depth of field, minimalist composition, focus on human interaction, natural light, candid moment".
-    - **Aspect Ratio:** The composition must be optimized for "{{aspectRatio}}".
-    - **Background:** Use this as the core idea for the background: "{{backgroundDetails}}".
-    - **Main Content/Subject:** Use this as the core idea for the main subjects and action: "{{contentDetails}}".
+    **Formula Implementation Instructions:**
+    1. **Subject/Action:** Must include professional couriers wearing navy blue uniforms with amber accents. Action must represent {{serviceName}}.
+    2. **Composition:** Use high-end technical photography terms (e.g., "Macro close-up shot, shallow depth of field f/1.8", "Wide isometric shot").
+    3. **Lighting:** (e.g., "Cinematic lighting, golden hour sunlight, neon reflections").
+    4. **Style:** (e.g., "Photorealistic 8k render, commercial photography, UI SaaS aesthetic") matching {{visualStyle}}.
+    5. **Text Restriction:**
+       {{#if includeText}}
+       The sign clearly reads "{{serviceName}}" in bold Orbitron font, white and amber.
+       {{/if}}
+       {{#if includeBrand}}
+       Subtly include "Envíos DosRuedas" and phone "{{company.location_contact.phone}}" in the corner.
+       {{/if}}
+       {{#unless includeText}}{{#unless includeBrand}}Strictly NO text or logos.{{/unless}}{{/unless}}
 
-    **Final Prompt Optimization (Always Apply):**
-    - The final prompt MUST be in **English**.
-    - Structure: Start with the shot type (e.g., "Cinematic action shot,"), describe the main subject, then the background, and finally, add style and quality keywords.
-    - Be specific: Instead of "a man", use "a friendly male courier in his 20s wearing a branded helmet".
-    - Use powerful adjectives: "dynamic", "serene", "professional", "vibrant".
-    - Add quality enhancers: "hyper-detailed", "cinematic lighting", "sharp focus", "8k resolution".
-    - Seamlessly integrate the brand colors (blue and yellow/orange) into elements like vehicles, uniforms, packages, or subtle environmental details.
+    **Constraints:**
+    - Final prompt MUST be in English.
+    - DO NOT output conversational text. Output ONLY the final image prompt.
 
-    Now, generate the final, single-paragraph English prompt below.
+    Generate the final prompt:
   `,
 });
 
