@@ -55,11 +55,11 @@ export function EnviosFlexContent() {
             </p>
 
             {/* Features */}
-            <div className="space-y-6 mb-10">
+            <div className="space-y-4 mb-10">
               {features.map((feature, index) => (
                 <motion.div
                   key={index}
-                  className="flex items-start"
+                  className="flex items-start functional-list"
                   custom={index}
                   variants={itemVariants}
                 >
@@ -68,7 +68,7 @@ export function EnviosFlexContent() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-white mb-2 font-[family-name:var(--font-orbitron)] uppercase tracking-tight">{feature.title}</h3>
-                    <p className="text-gray-400 text-sm leading-relaxed font-[family-name:var(--font-roboto)]">{feature.description}</p>
+                    <p className="text-gray-400 text-sm leading-relaxed font-[family-name:var(--font-roboto)] font-normal">{feature.description}</p>
                   </div>
                 </motion.div>
               ))}

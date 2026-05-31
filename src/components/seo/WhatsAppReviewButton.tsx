@@ -3,27 +3,22 @@
 import React from 'react'
 import { MessageCircle } from 'lucide-react'
 
-/**
- * Componente utilitario para solicitar reseñas de Google Business via WhatsApp.
- * Posicionado de forma discreta (opacidad 0.2) para uso interno/estratégico.
- */
 export const WhatsAppReviewButton = () => {
   const phoneNumber = '542236602699'
-  const message = 'Hola! Gracias por elegir Envíos DosRuedas. ¿Podrías dedicarnos un minuto para dejarnos una reseña de 5 estrellas en Google? Nos ayuda mucho: https://g.page/r/https://g.page/r/YOUR_ID/review/review'
+  const message = 'Hola! Necesito hacer una consulta sobre los envíos.'
 
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
 
-  // TODO: Reemplazar con el link real de Google Business Profile
   return (
     <a
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Solicitar reseña por WhatsApp"
-      className="fixed bottom-24 right-6 z-40 p-3 bg-green-500 text-white rounded-full shadow-lg opacity-20 hover:opacity-100 transition-opacity duration-300 md:bottom-32"
-      title="Enviar solicitud de reseña (Uso Interno)"
+      aria-label="Contactar por WhatsApp"
+      className="fixed bottom-6 right-6 z-40 p-4 bg-primary hover:bg-primary/90 text-white rounded-full shadow-2xl transition-all duration-300 md:bottom-8 md:right-8"
+      title="Contacto por WhatsApp"
     >
-      <MessageCircle size={24} />
+      <MessageCircle size={28} />
     </a>
   )
 }

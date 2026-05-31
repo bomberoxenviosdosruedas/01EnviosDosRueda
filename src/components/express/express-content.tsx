@@ -37,18 +37,18 @@ export function ExpressContent() {
             </p>
 
             {/* Features */}
-            <div className="space-y-8 mb-16">
+            <div className="space-y-6 mb-16">
               {features.map((feature, index) => (
                 <div
                   key={index} 
-                  className="flex items-start"
+                  className="flex items-start functional-list"
                 >
                   <div className="w-8 h-8 bg-slate-900 border border-slate-800 flex items-center justify-center mr-6 flex-shrink-0 mt-1">
                     <Check className="w-4 h-4 text-primary" />
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-white mb-2 font-sans uppercase tracking-tight">{feature.title}</h3>
-                    <p className="text-gray-400 text-base leading-relaxed font-sans">{feature.description}</p>
+                    <p className="text-gray-400 text-base leading-relaxed font-sans font-normal">{feature.description}</p>
                   </div>
                 </div>
               ))}

@@ -7,7 +7,7 @@ import { motion } from "framer-motion"
 
 function UrgencyClock() {
   return (
-    <div className="relative w-32 h-32 mx-auto mb-8">
+    <div className="relative w-32 h-32 mb-8">
       <div className="absolute inset-0 border-4 border-secondary/20 rounded-full" />
       <motion.div
         className="absolute top-1/2 left-1/2 w-1 h-12 bg-secondary origin-bottom -translate-x-1/2 -translate-y-full rounded-full shadow-[0_0_15px_rgba(234,179,8,0.8)]"
@@ -59,18 +59,20 @@ export function ExpressBenefits() {
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="container mx-auto max-w-7xl relative z-10">
-        <div className="text-center mb-20">
+        <div className="text-left mb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <UrgencyClock />
+            <div className="mb-8">
+              <UrgencyClock />
+            </div>
             <h2 className="font-[family-name:var(--font-orbitron)] text-4xl md:text-5xl font-black italic mb-6 uppercase text-white tracking-tighter">
               ¿POR QUÉ <span className="text-secondary drop-shadow-[0_0_15px_rgba(234,179,8,0.5)]">ELEGIR EXPRESS?</span>
             </h2>
-            <div className="w-24 h-2 bg-secondary mx-auto mb-8 rounded-full shadow-[0_0_10px_rgba(234,179,8,0.5)]" />
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto font-[family-name:var(--font-roboto)]">
+            <div className="w-24 h-2 bg-secondary mr-auto mb-8 rounded-full shadow-[0_0_10px_rgba(234,179,8,0.5)]" />
+            <p className="text-gray-400 text-lg max-w-2xl font-[family-name:var(--font-roboto)]">
               Descubre todas las ventajas de nuestro servicio premium de entregas rápidas.
             </p>
           </motion.div>
