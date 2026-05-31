@@ -33,7 +33,7 @@ export function HowItWorks() {
        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="container mx-auto max-w-7xl relative z-10">
-        <div className="text-center mb-20">
+        <div className="text-left mb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -42,8 +42,8 @@ export function HowItWorks() {
             <h2 className="font-[family-name:var(--font-orbitron)] text-4xl md:text-5xl font-black italic mb-6 uppercase text-white tracking-tighter">
               LOGÍSTICA <span className="text-primary">SIN FRICCIONES</span>
             </h2>
-            <div className="w-24 h-2 bg-primary mx-auto mb-8 rounded-full" />
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto font-[family-name:var(--font-roboto)]">
+            <div className="w-24 h-2 bg-primary mr-auto mb-8 rounded-full" />
+            <p className="text-gray-400 text-lg max-w-2xl font-[family-name:var(--font-roboto)]">
               Integramos tu flujo de ventas con nuestra red de distribución en tiempo real.
             </p>
           </motion.div>

@@ -50,7 +50,7 @@ export function ExpressPricingRanges({ priceRanges }: ExpressPricingRangesProps)
   return (
     <section className="py-32 px-4 bg-[#050810] relative">
       <div className="container mx-auto max-w-7xl relative z-10">
-        <div className="text-center mb-24">
+        <div className="text-left mb-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -59,8 +59,8 @@ export function ExpressPricingRanges({ priceRanges }: ExpressPricingRangesProps)
             <h2 className="font-display text-4xl md:text-6xl font-black italic mb-6 uppercase text-white tracking-tighter">
               TARIFAS 2026 <span className="text-primary">ENVÍOS EXPRESS</span>
             </h2>
-            <div className="w-32 h-1.5 bg-primary mx-auto mb-8" />
-            <p className="text-gray-400 text-xl max-w-2xl mx-auto font-sans">
+            <div className="w-32 h-1.5 bg-primary mr-auto mb-8" />
+            <p className="text-gray-400 text-xl max-w-2xl font-sans">
               Consulta los precios actualizados para nuestro servicio premium con rango horario a elección.
             </p>
           </motion.div>
