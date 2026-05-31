@@ -4,6 +4,7 @@ import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Zap, ShieldCheck, CheckCircle2, Play, Globe, ArrowRight, MousePointer2 } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export const VisionSection = () => {
   const { scrollYProgress } = useScroll();
@@ -38,17 +39,17 @@ export const VisionSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-card border border-primary/20 text-blue-400 text-[10px] font-black tracking-[0.3em] mb-10 uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" /> Partner Logístico Especializado
+            <div className="inline-flex items-center gap-3 px-6 py-2 rounded-none bg-black border-2 border-[#F8CC0B] text-[#F8CC0B] text-[10px] font-black tracking-[0.3em] mb-10 uppercase shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              <span className="w-2 h-2 rounded-none bg-[#F8CC0B] animate-pulse" /> Partner Logístico Especializado
             </div>
 
-            <h2 className="font-display text-orbitron text-5xl md:text-7xl font-black leading-[0.9] mb-10 uppercase text-white tracking-tighter">
+            <h2 className="font-display text-orbitron text-5xl md:text-8xl font-black leading-[0.85] mb-10 uppercase text-white tracking-tighter">
               Nuestra Visión <br />
-              <span className="text-primary italic drop-shadow-[0_0_20px_rgba(37,99,235,0.4)]">Logística</span>
+              <span className="text-[#F8CC0B] italic underline decoration-8 decoration-white underline-offset-[12px]">Logística</span>
             </h2>
 
-            <p className="text-gray-400 text-lg md:text-xl mb-12 leading-relaxed font-[family-name:var(--font-roboto)] font-light max-w-2xl">
-              Transformamos <span className="font-bold text-gray-300">tus costos fijos en soluciones flexibles</span> que acompañan el crecimiento de tu negocio.
+            <p className="text-white text-lg md:text-2xl mb-12 leading-tight font-roboto font-bold max-w-2xl uppercase tracking-tighter">
+              Transformamos <span className="bg-[#F8CC0B] text-black px-2 inline-block -rotate-1">tus costos fijos</span> en soluciones flexibles que acompañan el crecimiento de tu negocio.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 mb-16">
@@ -59,18 +60,18 @@ export const VisionSection = () => {
                   whileHover={{ x: 10 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-white/[0.08] group-hover:border-primary/50 transition-all shadow-xl backdrop-blur-sm">
-                    {React.cloneElement(item.icon, { size: 28 })}
+                  <div className="w-16 h-16 rounded-none bg-white border-4 border-black flex items-center justify-center shrink-0 group-hover:bg-[#F8CC0B] transition-all shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+                    {React.cloneElement(item.icon, { size: 32, className: "text-black" })}
                   </div>
                   <div>
-                    <h3 className="font-display text-orbitron text-sm font-black text-white uppercase tracking-wider mb-2 group-hover:text-primary transition-colors">{item.title}</h3>
-                    <p className="text-gray-400 text-xs font-[family-name:var(--font-roboto)] leading-relaxed font-light">{item.text}</p>
+                    <h3 className="font-display text-orbitron text-xl font-black text-white uppercase tracking-wider mb-2 group-hover:text-[#F8CC0B] transition-colors">{item.title}</h3>
+                    <p className="text-white/80 text-sm font-roboto leading-tight font-medium uppercase tracking-tight">{item.text}</p>
                   </div>
                 </motion.div>
               ))}
             </div>
 
-            <div className="flex flex-wrap items-center gap-x-16 gap-y-10 pt-10 border-t border-white/10">
+            <div className="flex flex-wrap items-center gap-x-16 gap-y-10 pt-10 border-t-4 border-white">
               {stats.map((stat, i) => (
                 <div key={i} className="flex flex-col max-w-[200px]">
                   <span className={`text-4xl md:text-5xl font-black font-display text-orbitron ${stat.color} tracking-tighter italic drop-shadow-lg leading-tight`}>
@@ -95,52 +96,47 @@ export const VisionSection = () => {
             className="lg:col-span-5 relative"
             style={{ scale, y }}
           >
-            {/* Visual Glass Frame */}
-            <div className="relative aspect-[4/5] rounded-[60px] overflow-hidden group border border-white/10 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.8)]">
+            {/* Visual Frame */}
+            <div className="relative aspect-[4/5] rounded-none overflow-hidden group border-4 border-black shadow-[20px_20px_0px_0px_rgba(0,0,0,1)]">
               <Image
                 src="/hero/mapa_background.jpeg"
                 alt="Vanguardia Logística"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover transition-transform duration-[3000ms] group-hover:scale-110 filter brightness-90 contrast-110"
+                className="object-cover transition-transform duration-[3000ms] group-hover:scale-110 filter brightness-100 contrast-125 grayscale hover:grayscale-0 transition-all duration-1000"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#050810] via-transparent to-transparent opacity-90" />
+              <div className="absolute inset-0 bg-black/40" />
 
-              {/* Animated Inner Glow */}
-              <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-
-              {/* Floating Interactive Hub */}
-              <div className="absolute bottom-10 left-8 right-8 p-10 rounded-[40px] bg-[#050810]/40 backdrop-blur-3xl border border-white/10 flex items-center justify-between group-hover:bg-[#050810]/60 transition-all duration-700 shadow-2xl">
+              {/* Interactive Hub */}
+              <div className="absolute bottom-0 left-0 right-0 p-8 bg-white border-t-4 border-black flex flex-col gap-6 group-hover:bg-[#F8CC0B] transition-all duration-500">
                 <div>
-                  <h3 className="font-display text-orbitron text-2xl font-black text-white uppercase tracking-tight mb-2">Conocé más sobre nosotros</h3>
-                  <div className="flex items-center gap-3 text-[10px] text-blue-400 font-black tracking-[0.2em] uppercase">
-                    <CheckCircle2 size={14} className="animate-pulse" aria-hidden="true" /> ¿Listo para formar parte de nuestra familia de clientes satisfechos?
+                  <h3 className="font-display text-orbitron text-2xl font-black text-black uppercase tracking-tight mb-2 leading-none">Conocé más sobre nosotros</h3>
+                  <div className="flex items-center gap-3 text-[10px] text-black font-black tracking-[0.1em] uppercase">
+                    ¿Listo para formar parte de nuestra familia de clientes satisfechos?
                   </div>
                 </div>
-                <motion.button
-                  whileHover={{ scale: 1.1, rotate: 12 }}
-                  whileTap={{ scale: 0.9 }}
-                  aria-label="Ir a página sobre nosotros"
-                  className="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-white shadow-[0_10px_30px_-5px_rgba(37,99,235,0.6)] hover:bg-blue-500 transition-all border border-blue-400/30"
-                  onClick={() => window.location.href = '/nosotros/sobre-nosotros'}
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <Play size={24} fill="currentColor" className="ml-1" aria-hidden="true" />
-                </motion.button>
+                  <Link
+                    href="/nosotros/sobre-nosotros"
+                    aria-label="Ir a página sobre nosotros"
+                    className="w-full h-14 rounded-none bg-black flex items-center justify-center text-white font-black text-lg uppercase tracking-widest hover:bg-white hover:text-black transition-all border-2 border-black"
+                  >
+                    Explorar <ArrowRight className="ml-4" />
+                  </Link>
+                </motion.div>
               </div>
 
-              {/* Holographic Status */}
-              <div className="absolute top-10 right-10 flex flex-col items-end gap-3">
-                <div className="px-3 py-1.5 rounded-lg bg-blue-500/20 backdrop-blur-md border border-blue-500/40 text-[9px] font-black text-blue-400 uppercase tracking-widest flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-ping" />
-                  EN LÍNEA
+              {/* Status */}
+              <div className="absolute top-6 right-6 flex flex-col items-end gap-3">
+                <div className="px-4 py-2 rounded-none bg-black border-2 border-[#F8CC0B] text-[10px] font-black text-[#F8CC0B] uppercase tracking-[0.2em] flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-none bg-[#F8CC0B] animate-pulse" />
+                  STATUS: OPERATIVO
                 </div>
-                <div className="w-px h-12 bg-gradient-to-b from-blue-500/50 to-transparent mr-4" />
               </div>
             </div>
-
-            {/* Background Light Leaks */}
-            <div className="absolute -z-10 -bottom-20 -right-20 w-[400px] h-[400px] bg-blue-600/20 rounded-full blur-[120px] mix-blend-screen opacity-50" />
-            <div className="absolute -z-10 -top-20 -left-20 w-[300px] h-[300px] bg-yellow-500/10 rounded-full blur-[100px] mix-blend-screen opacity-30" />
           </motion.div>
         </div>
       </div>

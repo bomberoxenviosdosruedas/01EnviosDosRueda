@@ -2,90 +2,65 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Calculator, ArrowRight, Zap, ShieldCheck, Clock, MousePointer2 } from 'lucide-react';
+import { Calculator, ArrowRight, Zap, ShieldCheck, Clock } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 export const CtaSection = () => {
   return (
-    <section className="relative min-h-[100dvh] flex items-center py-20 lg:py-32 px-4 bg-transparent overflow-hidden">
-      {/* High-End Background Effects */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <Image
-          src="/hero/abstracto_background.jpeg"
-          alt="Background Abstracto"
-          fill
-          className="object-cover opacity-[0.07] grayscale"
-        />
-        <div className="absolute inset-0 bg-radial-gradient-blue" />
-        <div className="absolute inset-0 bg-radial-gradient-yellow" />
-
-        {/* Static Background Highlight (Performance) */}
-        <div
-          className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-600/10 blur-[150px] rounded-full"
-        />
-
-        {/* Tech grid overlay */}
-        <div className="absolute inset-0 tech-grid-overlay" />
-      </div>
-
+    <section className="relative min-h-[100dvh] flex items-center py-32 px-4 bg-[#2264E3] overflow-hidden">
       <div className="max-w-6xl mx-auto w-full relative z-10">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="relative p-12 md:p-24 rounded-[60px] primary-gradient-bg overflow-hidden glow-blue group border border-white/10"
+          className="relative p-12 md:p-24 rounded-none bg-black overflow-hidden border-8 border-white shadow-[30px_30px_0px_0px_rgba(0,0,0,1)] group"
         >
-          {/* Internal Glow Effects */}
-          <div className="absolute -top-24 -right-24 w-96 h-96 bg-white/10 blur-[80px] rounded-full group-hover:bg-white/20 transition-all duration-1000" />
-          <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-yellow-400/10 blur-[80px] rounded-full" />
-
           <div className="relative z-10 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-3 px-5 py-2 rounded-full glass-card text-white text-[10px] font-black tracking-[0.4em] mb-12 uppercase"
+              className="inline-flex items-center gap-3 px-6 py-2 rounded-none bg-white text-black text-[10px] font-black tracking-[0.4em] mb-12 uppercase"
             >
-              <Zap size={16} className="fill-yellow-400 text-yellow-400 animate-pulse" /> ¡Empezá Ahora!
+              <Zap size={16} className="fill-black text-black animate-pulse" /> ¡Empezá Ahora!
             </motion.div>
 
-            <h2 className="font-display text-orbitron text-4xl md:text-7xl lg:text-8xl font-black text-white mb-10 tracking-tighter leading-[0.9] uppercase italic">
+            <h2 className="font-display text-orbitron text-5xl md:text-8xl font-black text-white mb-10 tracking-tighter leading-[0.85] uppercase">
               ¿Listo para escalar la <br />
-              <span className="text-secondary drop-shadow-2xl">logística de tu E-Commerce?</span>
+              <span className="text-[#F8CC0B] italic underline decoration-8 decoration-white underline-offset-[16px]">logística de tu E-Commerce?</span>
             </h2>
 
-            <p className="text-blue-100 text-lg md:text-2xl mb-16 max-w-4xl mx-auto font-[family-name:var(--font-roboto)] leading-relaxed font-light opacity-80">
-              <span className="font-bold">Olvidate de la gestión de paquetes</span> y enfocate en vender más. Dejá la distribución urbana en manos de expertos.
+            <p className="text-white text-xl md:text-3xl mb-16 max-w-4xl mx-auto font-roboto font-bold leading-tight uppercase tracking-tighter">
+              <span className="bg-[#F8CC0B] text-black px-2">Olvidate de la gestión de paquetes</span> y enfocate en vender más. Dejá la distribución urbana en manos de expertos.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-8 justify-center items-center">
               <Link
                 href="https://wa.me/5492236602699?text=Hola%20Envios%20DosRuedas,%20vengo%20desde%20la%20web."
                 aria-label="Contactanos por WhatsApp para servicios logísticos"
-                className="group w-full sm:w-auto px-12 py-6 bg-white text-blue-800 font-display text-orbitron font-black rounded-2xl transition-all shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:scale-105 active:scale-95 flex items-center justify-center gap-4 uppercase tracking-tighter text-sm"
+                className="group w-full sm:w-auto px-12 h-20 bg-[#F8CC0B] text-black font-display text-orbitron font-black rounded-none transition-all shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] hover:shadow-none hover:translate-x-2 hover:translate-y-2 flex items-center justify-center gap-4 uppercase tracking-tighter text-xl border-4 border-black"
               >
-                Contactanos por WhatsApp <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
+                WHATSAPP DIRECTO <ArrowRight size={28} className="group-hover:translate-x-2 transition-transform" />
               </Link>
 
               <Link
-                href="/tarifas"
-                className="w-full sm:w-auto px-12 py-6 bg-blue-500/20 hover:bg-blue-500/30 border border-white/20 text-white font-display text-orbitron font-bold rounded-2xl transition-all backdrop-blur-md flex items-center justify-center gap-4 uppercase tracking-widest text-xs"
+                href="/nosotros/preguntas-frecuentes"
+                className="w-full sm:w-auto px-12 h-20 bg-transparent hover:bg-white/10 border-4 border-white text-white font-display text-orbitron font-black rounded-none transition-all flex items-center justify-center gap-4 uppercase tracking-widest text-lg"
               >
-                Ver Tarifas 2026 <Calculator size={22} />
+                PREGUNTAS <Calculator size={28} />
               </Link>
             </div>
 
-            <div className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-12 pt-16 border-t border-white/10">
+            <div className="mt-24 grid grid-cols-1 sm:grid-cols-3 gap-12 pt-20 border-t-4 border-white">
               {[
                 { icon: <Clock aria-hidden="true" />, text: "Confianza local comprobada" },
                 { icon: <ShieldCheck aria-hidden="true" />, text: "Innovación constante en última milla" },
-                { icon: <MousePointer2 aria-hidden="true" />, text: "Motocicletas dedicadas para máxima agilidad urbana" }
+                { icon: <Zap aria-hidden="true" />, text: "Flota exclusiva dedicada" }
               ].map((item, i) => (
-                <div key={i} className="flex flex-col items-center gap-4 text-[9px] font-black text-blue-100/50 uppercase tracking-[0.3em]">
-                  <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-white/40 group-hover:text-white transition-all">
-                    {React.cloneElement(item.icon as React.ReactElement<{ size?: number; className?: string; fill?: string }>, { size: 18 })}
+                <div key={i} className="flex flex-col items-center gap-4 text-[10px] font-black text-white uppercase tracking-[0.3em]">
+                  <div className="w-16 h-16 rounded-none bg-white flex items-center justify-center text-black border-2 border-black group-hover:bg-[#F8CC0B] transition-all">
+                    {React.cloneElement(item.icon as React.ReactElement<{ size?: number; className?: string; fill?: string }>, { size: 28 })}
                   </div>
                   {item.text}
                 </div>
