@@ -151,6 +151,12 @@
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
   }
+
+  @media (max-width: 1024px) {
+    body {
+      padding-bottom: 5rem;
+    }
+  }
 }
 
 /* Custom scrollbar */

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 import { WhatsAppReviewButton } from "@/components/seo/WhatsAppReviewButton";
+import { MobileBottomNav } from "@/components/ui/mobile-bottom-nav";
 import "./globals.css";
 
 const inter = Inter({
@@ -110,6 +111,7 @@ export default function RootLayout({
         {children}
         <WhatsAppReviewButton />
         <Toaster />
+        <MobileBottomNav />
       </body>
     </html>
   );
