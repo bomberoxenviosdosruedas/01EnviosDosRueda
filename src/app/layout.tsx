@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Roboto, Orbitron } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 import { WhatsAppReviewButton } from "@/components/seo/WhatsAppReviewButton";
+import { BUSINESS_INFO } from "@/lib/constants/business";
 import "./globals.css";
 
 
@@ -21,22 +22,22 @@ const orbitron = Orbitron({
 
 
 export const metadata: Metadata = {
-  title: 'Envíos DosRuedas | Tu solución confiable',
-  description: 'Servicio confiable de mensajería y delivery en moto. Envíos express y low-cost para e-commerce, pymes y Mercado Libre Flex en Mar del Plata. Cotizá online.',
+  title: `${BUSINESS_INFO.name} | Tu solución confiable`,
+  description: BUSINESS_INFO.description,
   keywords: 'mensajeria mar del plata, delivery mar del plata, envios en moto, cadeteria mar del plata, envios flex, envios low cost, mensajeria express, envios dos ruedas',
   alternates: {
-    canonical: 'https://www.enviosdosruedas.com',
+    canonical: BUSINESS_INFO.website,
   },
   openGraph: {
-    title: 'Mensajería y Logística E-Commerce en Mar del Plata | Envíos DosRuedas',
+    title: `Mensajería y Logística E-Commerce en Mar del Plata | ${BUSINESS_INFO.name}`,
     description: 'Envíos express, low-cost, para emprendedores y Mercado Libre Flex. Cotiza online en Mar del Plata.',
-    url: 'https://www.enviosdosruedas.com',
+    url: BUSINESS_INFO.website,
     images: [
       {
-        url: 'https://www.enviosdosruedas.com/icons/icon-512x512.png',
+        url: `${BUSINESS_INFO.website}/icons/icon-512x512.png`,
         width: 512,
         height: 512,
-        alt: 'Logo de Envios DosRuedas',
+        alt: `Logo de ${BUSINESS_INFO.name}`,
       },
     ],
     type: 'website',
@@ -63,33 +64,24 @@ export default function RootLayout({
     const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    name: 'EnviosDosRuedas',
-    image: 'https://www.enviosdosruedas.com/icons/icon-512x512.png',
-    url: 'https://www.enviosdosruedas.com',
-    telephone: '+542236602699',
+    name: BUSINESS_INFO.legalName,
+    image: `${BUSINESS_INFO.website}/icons/icon-512x512.png`,
+    url: BUSINESS_INFO.website,
+    telephone: BUSINESS_INFO.phone.value,
     priceRange: '$$',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Friuli 1972',
-      addressLocality: 'Mar del Plata',
-      postalCode: 'B7600',
+      streetAddress: BUSINESS_INFO.address.street,
+      addressLocality: BUSINESS_INFO.address.city,
+      postalCode: BUSINESS_INFO.address.postalCode,
       addressCountry: 'AR',
     },
-    openingHoursSpecification: [
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: [
-          'Monday',
-          'Tuesday',
-          'Wednesday',
-          'Thursday',
-          'Friday',
-          'Saturday',
-        ],
-        opens: '09:00',
-        closes: '18:00',
-      },
-    ],
+    openingHoursSpecification: BUSINESS_INFO.openingHours.map(oh => ({
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: oh.day,
+      opens: oh.opens,
+      closes: oh.closes,
+    })),
   };
 
   return (

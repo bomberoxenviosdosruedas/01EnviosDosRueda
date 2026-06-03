@@ -12,6 +12,7 @@ import { HojaDeRutaRepartidor } from './HojaDeRutaRepartidor';
 import { AssignEtiqueta } from './AssignEtiqueta';
 import { useToast } from '@/hooks/use-toast';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { UI_DICTIONARY } from '@/lib/constants/dictionary';
 
 interface RepartidorDashboardProps {
     repartidor: Repartidor;
@@ -50,8 +51,8 @@ export function RepartidorDashboard({ repartidor, initialEtiquetas }: Repartidor
     };
 
     return (
-        <div className="min-h-screen bg-[#050810] text-slate-200 font-sans pb-24">
-            <header className="bg-[#2563EB] text-white shadow-xl sticky top-0 z-40 border-b border-blue-400/20">
+        <div className="min-h-screen bg-brand-dark text-slate-200 font-sans pb-24">
+            <header className="bg-brand-azure text-white shadow-xl sticky top-0 z-40 border-b border-blue-400/20">
                 <div className="container mx-auto px-4 h-16 flex justify-between items-center">
                     <div className="flex items-center gap-3">
                         <div className="bg-white/10 p-1.5 border border-white/20">
@@ -81,19 +82,19 @@ export function RepartidorDashboard({ repartidor, initialEtiquetas }: Repartidor
                 <SheetTrigger asChild>
                     <Button
                         size="icon"
-                        className="fixed bottom-6 right-6 h-16 w-16 rounded-none bg-[#E89A17] hover:bg-[#d97706] text-white shadow-[0_0_20px_rgba(232,154,23,0.3)] border-2 border-white/10 z-50 group transition-all active:scale-95"
+                        className="fixed bottom-6 right-6 h-16 w-16 rounded-none bg-brand-gold hover:bg-yellow-600 text-white shadow-[0_0_20px_rgba(232,154,23,0.3)] border-2 border-white/10 z-50 group transition-all active:scale-95"
                     >
                         <Plus className="h-8 w-8 group-hover:rotate-90 transition-transform duration-300" />
                     </Button>
                 </SheetTrigger>
-                <SheetContent side="bottom" className="h-[auto] bg-[#050810] border-t border-slate-800 rounded-none p-0 overflow-hidden">
+                <SheetContent side="bottom" className="h-[auto] bg-brand-dark border-t border-slate-800 rounded-none p-0 overflow-hidden">
                     <div className="p-6">
                         <SheetHeader className="mb-6">
                             <div className="flex items-center gap-3 mb-2">
-                                <div className="bg-[#2563EB] p-2 border border-blue-400/20">
+                                <div className="bg-brand-azure p-2 border border-blue-400/20">
                                     <ScanBarcode className="h-6 w-6 text-white" />
                                 </div>
-                                <SheetTitle className="text-xl font-display font-bold text-white uppercase">Asignar Entrega</SheetTitle>
+                                <SheetTitle className="text-xl font-display font-bold text-white uppercase">{UI_DICTIONARY.repartidor.dashboard.assignDelivery}</SheetTitle>
                             </div>
                             <SheetDescription className="text-slate-400">
                                 Escaneá el código o ingresá el número de orden para agregarla a tu ruta de hoy.

@@ -3,6 +3,8 @@ import { Truck, MapPin, Phone, Mail, ShieldCheck, Zap, Globe, ArrowUpRight } fro
 import Link from 'next/link';
 import Image from 'next/image';
 import { FooterSocialLinks } from './footer-social-links';
+import { BUSINESS_INFO } from '@/lib/constants/business';
+import { UI_DICTIONARY } from '@/lib/constants/dictionary';
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -40,22 +42,22 @@ export const Footer = () => {
               </div>
               <div className="flex flex-col justify-center">
                 <span className="font-display text-orbitron font-black text-xl sm:text-2xl lg:text-3xl tracking-tighter text-white uppercase italic leading-none mb-1">
-                  Envios DosRuedas
+                  {BUSINESS_INFO.name}
                 </span>
                 <span className="font-display text-orbitron font-black text-primary drop-shadow-[0_0_10px_rgba(37,99,235,0.3)] text-[10px] sm:text-sm lg:text-base uppercase italic tracking-[0.15em] leading-none">
-                  tu solución confiable
+                  {BUSINESS_INFO.shortTagline}
                 </span>
               </div>
             </Link>
             <p className="text-gray-400 text-base mb-12 leading-relaxed font-[family-name:var(--font-roboto)] font-light max-w-sm">
-              Tu solución confiable para mensajería y delivery en Mar del Plata. Servicios rápidos, seguros y económicos.
+              {BUSINESS_INFO.tagline}
             </p>
 
             <FooterSocialLinks
               links={[
-                { icon: "/icons/instagram.svg", href: "https://instagram.com/enviosdosruedas", label: "Instagram en el pie de página" },
-                { icon: "/icons/facebook.svg", href: "https://facebook.com/enviosdosruedas", label: "Facebook en el pie de página" },
-                { icon: "/icons/whatsapp.svg", href: "https://wa.me/542236602699", label: "WhatsApp en el pie de página" },
+                { icon: "/icons/instagram.svg", href: BUSINESS_INFO.social.instagram, label: "Instagram en el pie de página" },
+                { icon: "/icons/facebook.svg", href: BUSINESS_INFO.social.facebook, label: "Facebook en el pie de página" },
+                { icon: "/icons/whatsapp.svg", href: BUSINESS_INFO.social.whatsapp, label: "WhatsApp en el pie de página" },
                 { icon: "/icons/google.svg", href: "#", label: "Google en el pie de página" }
               ]}
             />
@@ -100,7 +102,7 @@ export const Footer = () => {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-white font-display text-orbitron text-[10px] font-black uppercase tracking-widest mb-1 opacity-40">Ubicación</span>
-                  <span className="text-gray-400 text-sm leading-relaxed font-light">Friuli 1972, Mar del Plata</span>
+                  <span className="text-gray-400 text-sm leading-relaxed font-light">{BUSINESS_INFO.address.street}, {BUSINESS_INFO.address.city}</span>
                 </div>
               </li>
 
@@ -110,7 +112,7 @@ export const Footer = () => {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-white font-display text-orbitron text-[10px] font-black uppercase tracking-widest mb-1 opacity-40">Teléfono</span>
-                  <a href="tel:+542236602699" className="text-gray-400 hover:text-white transition-colors font-light text-sm">+54 223 660-2699</a>
+                  <a href={BUSINESS_INFO.phone.href} className="text-gray-400 hover:text-white transition-colors font-light text-sm">{BUSINESS_INFO.phone.display}</a>
                 </div>
               </li>
 
@@ -120,7 +122,7 @@ export const Footer = () => {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-white font-display text-orbitron text-[10px] font-black uppercase tracking-widest mb-1 opacity-40">Email</span>
-                  <a href="mailto:matiascejas@enviosdosruedas.com" className="text-gray-400 hover:text-white transition-colors font-light text-sm">matiascejas@enviosdosruedas.com</a>
+                  <a href={BUSINESS_INFO.email.href} className="text-gray-400 hover:text-white transition-colors font-light text-sm">{BUSINESS_INFO.email.display}</a>
                 </div>
               </li>
             </ul>
@@ -146,7 +148,7 @@ export const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-10">
           <div className="flex flex-col gap-2">
             <p className="text-[9px] text-gray-400 uppercase tracking-[0.4em] font-black text-center md:text-left">
-              © 2026 Envios DosRuedas. Todos los derechos reservados.
+              © {currentYear} {BUSINESS_INFO.name}. {UI_DICTIONARY.common.allRightsReserved}
             </p>
           </div>
 

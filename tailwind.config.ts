@@ -19,6 +19,11 @@ const config: Config = {
     },
     extend: {
       colors: {
+        brand: {
+          dark: "#050810",
+          azure: "#2563EB",
+          gold: "#E89A17",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -54,6 +59,8 @@ const config: Config = {
         },
       },
       borderRadius: {
+        extreme: "40px",
+        super: "60px",
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",

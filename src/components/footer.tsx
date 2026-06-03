@@ -17,6 +17,8 @@ import {
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
 import { navGroups } from "@/lib/navigation"
+import { BUSINESS_INFO } from "@/lib/constants/business"
+import { UI_DICTIONARY } from "@/lib/constants/dictionary"
 
 export function Footer() {
   const [isVisible, setIsVisible] = useState(false)
@@ -42,9 +44,9 @@ export function Footer() {
   }
 
   const socialLinks = [
-    { label: "Facebook", Icon: Facebook, href: "https://facebook.com/enviosdosruedas" },
-    { label: "Instagram", Icon: Instagram, href: "https://instagram.com/enviosdosruedas" },
-    { label: "Twitter", Icon: Twitter, href: "https://twitter.com/enviosdosruedas" },
+    { label: "Facebook", Icon: Facebook, href: BUSINESS_INFO.social.facebook },
+    { label: "Instagram", Icon: Instagram, href: BUSINESS_INFO.social.instagram },
+    { label: "Twitter", Icon: Twitter, href: BUSINESS_INFO.social.twitter },
   ]
 
   return (
@@ -69,11 +71,11 @@ export function Footer() {
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
               <h3 className="text-lg font-bold text-secondary group-hover:text-yellow-300 transition-colors">
-                Envios DosRuedas
+                {BUSINESS_INFO.name}
               </h3>
             </Link>
             <p className="text-sm mb-6 leading-relaxed">
-              Tu solución confiable para mensajería y delivery en Mar del Plata y alrededores.
+              {BUSINESS_INFO.tagline}
             </p>
             <div className="flex space-x-2">
               {socialLinks.map(social => (
@@ -119,9 +121,9 @@ export function Footer() {
              <h4 className="font-heading text-base font-semibold text-primary-foreground mb-4 pb-2 border-b-2 border-secondary inline-block">Contacto Rápido</h4>
             <ul className="space-y-3">
               {[
-                {Icon: MapPin, text: "Friuli 1972, Mar del Plata"},
-                {Icon: Phone, text: "+54 223 660-2699", href: "tel:+542236602699"},
-                {Icon: Mail, text: "matiascejas@enviosdosruedas.com", href: "mailto:matiascejas@enviosdosruedas.com"},
+                {Icon: MapPin, text: `${BUSINESS_INFO.address.street}, ${BUSINESS_INFO.address.city}`},
+                {Icon: Phone, text: BUSINESS_INFO.phone.display, href: BUSINESS_INFO.phone.href},
+                {Icon: Mail, text: BUSINESS_INFO.email.display, href: BUSINESS_INFO.email.href},
               ].map(({Icon, text, href}) => (
                 <li key={text}>
                     <motion.a
@@ -141,7 +143,7 @@ export function Footer() {
         <div className="border-t border-primary-foreground/10 mt-8 md:mt-12 pt-6 md:pt-8 text-center">
          {currentYear !== null && (
             <p className="text-sm">
-              &copy; {currentYear} Envios DosRuedas. Todos los derechos reservados.
+              &copy; {currentYear} {BUSINESS_INFO.name}. {UI_DICTIONARY.common.allRightsReserved}
             </p>
           )}
         </div>
@@ -160,7 +162,7 @@ export function Footer() {
             <Button
               onClick={scrollToTop}
               className="p-2.5 rounded-full bg-secondary text-primary shadow-lg hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-gray-900"
-              aria-label="Volver arriba"
+              aria-label={UI_DICTIONARY.common.backToTop}
               variant="secondary"
               size="icon"
             >
