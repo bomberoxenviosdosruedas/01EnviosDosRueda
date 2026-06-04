@@ -1,0 +1,139 @@
+{
+	"info": {
+		"_postman_id": "7d9e2a1b-4f5c-4d8e-9a0b-1c2d3e4f5g6h",
+		"name": "Dos Ruedas Pro API v1",
+		"description": "Colección para pruebas de la API logística de Dos Ruedas Pro en Mar del Plata.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Operaciones",
+			"item": [
+				{
+					"name": "Calcular Cotización",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"originAddress\": \"Friuli 1972, Mar del Plata\",\n    \"destinationAddress\": \"Güemes 2500, Mar del Plata\",\n    \"serviceType\": \"EXPRESS\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/orders/quote",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders",
+								"quote"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Órdenes",
+			"item": [
+				{
+					"name": "Listar Órdenes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/orders?page=1&limit=20",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Creación Masiva (Bulk)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-API-KEY",
+								"value": "{{apiKey}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"orders\": [\n        {\n            \"serviceType\": \"LOW_COST\",\n            \"originAddress\": \"Independencia 1500\",\n            \"destinationAddress\": \"Colon 2000\"\n        },\n        {\n            \"serviceType\": \"EXPRESS\",\n            \"originAddress\": \"Luro 3000\",\n            \"destinationAddress\": \"Alberti 1200\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/orders/bulk",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders",
+								"bulk"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://api.dosruedas.com.ar/v1",
+			"type": "string"
+		},
+		{
+			"key": "apiKey",
+			"value": "tu_api_key_aqui",
+			"type": "string"
+		}
+	]
+}
