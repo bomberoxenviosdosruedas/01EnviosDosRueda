@@ -25,8 +25,8 @@ export const metadata: Metadata = {
   },
 }
 
-// Disable prerendering during build to avoid database connection issues
-export const revalidate = 0;
+// Enable ISR with 1 hour revalidation to balance performance and freshness
+export const revalidate = 3600;
 
 async function getPriceRanges(): Promise<PriceRangeClient[]> {
   try {

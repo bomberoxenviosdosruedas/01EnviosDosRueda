@@ -1,0 +1,32 @@
+
+> nextn@0.1.0 dev /app
+> next dev --turbopack
+
+▲ Next.js 16.2.4 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+✓ Ready in 553ms
+⚠ `eslint` configuration in next.config.mjs is no longer supported. See more info here: https://nextjs.org/docs/app/api-reference/cli/next#next-lint-options
+⚠ Invalid next.config.mjs options detected:
+⚠     Unrecognized key(s) in object: 'eslint'
+⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+
+
+warn - The class `duration-[3000ms]` is ambiguous and matches multiple utilities.
+warn - If this is content and not a class, replace it with `duration-&lsqb;3000ms&rsqb;` to silence this warning.
+○ Compiling / ...
+ GET / 200 in 8.7s (next.js: 7.7s, application-code: 982ms)
+○ Compiling /seguimiento ...
+ GET /seguimiento 200 in 4.0s (next.js: 3.6s, application-code: 448ms)
+ GET /terminos-y-condiciones 200 in 1983ms (next.js: 1630ms, application-code: 353ms)
+○ Compiling /servicios/envios-express ...
+(node:73941) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ GET /servicios/envios-express 200 in 6.9s (next.js: 3.7s, application-code: 3.3s)

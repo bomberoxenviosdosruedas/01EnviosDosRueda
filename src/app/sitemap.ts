@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Dominio de producción unificado (sin barra al final)
-  const baseUrl = 'https://enviosdosruedas.com'
+  const baseUrl = 'https://www.enviosdosruedas.com'
 
   // Rutas públicas optimizadas para indexación
   const publicRoutes = [

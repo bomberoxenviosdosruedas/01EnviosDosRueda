@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     },
 };
 
-export const revalidate = 0; // Disable prerendering during build to avoid database connection issues
+export const revalidate = 3600; // Enable ISR with 1 hour revalidation
 
 export default async function SocialNetworksPage() {
   const posts = await getAllPosts();

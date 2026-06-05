@@ -19,8 +19,8 @@ export const metadata: Metadata = {
   },
 };
 
-// Disable prerendering since it relies on Prisma DB
-export const revalidate = 0;
+// Enable ISR with 1 hour revalidation to balance performance and freshness
+export const revalidate = 3600;
 
 async function getPriceRanges(): Promise<PriceRangeClient[]> {
   try {

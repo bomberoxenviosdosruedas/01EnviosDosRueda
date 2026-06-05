@@ -7,8 +7,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield, FileText } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Política de Privacidad",
-  description: "Conoce cómo Envios DosRuedas protege y gestiona tus datos personales. Nuestra política de privacidad detalla la información que recopilamos y su uso.",
+  title: "Política de Privacidad | Envíos DosRuedas",
+  description: "Conoce cómo Envíos DosRuedas protege y gestiona tus datos personales. Nuestra política de privacidad detalla la información que recopilamos y su uso.",
+  alternates: {
+    canonical: "https://www.enviosdosruedas.com/politica-de-privacidad",
+  },
   robots: {
     index: true,
     follow: true,

@@ -7,8 +7,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileText, Handshake } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Términos y Condiciones",
-  description: "Lee los términos y condiciones del servicio de Envios DosRuedas. Al utilizar nuestros servicios, aceptas nuestras políticas y procedimientos.",
+  title: "Términos y Condiciones | Envíos DosRuedas",
+  description: "Lee los términos y condiciones del servicio de Envíos DosRuedas. Al utilizar nuestros servicios, aceptas nuestras políticas y procedimientos.",
+  alternates: {
+    canonical: "https://www.enviosdosruedas.com/terminos-y-condiciones",
+  },
   robots: {
     index: true,
     follow: true,

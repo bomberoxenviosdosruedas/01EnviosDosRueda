@@ -45,9 +45,6 @@ export const metadata: Metadata = {
   authors: [{ name: 'Envíos DosRuedas' }],
   creator: 'Envíos DosRuedas',
   publisher: 'Envíos DosRuedas',
-  alternates: {
-    canonical: '/',
-  },
   openGraph: {
     title: 'Envíos DosRuedas | Expertos en Logística E-commerce en MDP',
     description: 'Optimizá tus entregas en Mar del Plata. Envíos Express, LowCost y Logística 3PL para emprendedores.',
