@@ -2,24 +2,11 @@
 
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
-import { Zap, Package, Truck, ChevronRight, Clock, MousePointer2 } from 'lucide-react';
+import { Zap, Clock, Package, Truck, ChevronRight, MousePointer2 } from 'lucide-react';
+import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import { cn } from "@/lib/utils";
 
-// Definición de tipos para la tematización semántica
-type ServiceTheme = {
-  card: string;
-  icon: string;
-  accent: string;
-  text: string;
-  desc: string;
-  button: string;
-  badge?: string;
-  accentColor: string;
-  glowColor: string;
-};
-
-const THEMES: Record<string, ServiceTheme> = {
+const THEMES = {
   express: {
     card: "bg-[#0a0d16]/80 border-red-500/20 hover:border-red-500/40 shadow-2xl backdrop-blur-md",
     icon: "bg-red-500/10 border border-red-500/20 text-red-400 drop-shadow-[0_0_15px_rgba(239,68,68,0.4)]",
@@ -29,7 +16,7 @@ const THEMES: Record<string, ServiceTheme> = {
     button: "text-gray-300 hover:text-white group-hover:text-red-400",
     badge: "bg-red-500/10 text-red-400 border-red-500/20",
     accentColor: "red-400",
-    glowColor: "rgba(239,68,68,0.1)"
+    glowColor: "rgba(239,68,68,0.15)"
   },
   lowcost: {
     card: "bg-[#0a0d16]/80 border-cyan-500/20 hover:border-cyan-500/40 shadow-2xl backdrop-blur-md",
@@ -40,7 +27,7 @@ const THEMES: Record<string, ServiceTheme> = {
     button: "text-gray-300 hover:text-white group-hover:text-cyan-400",
     badge: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
     accentColor: "cyan-400",
-    glowColor: "rgba(6,182,212,0.1)"
+    glowColor: "rgba(6,182,212,0.15)"
   },
   meli: {
     card: "bg-[#0a0d16]/80 border-yellow-500/20 hover:border-yellow-500/40 shadow-2xl backdrop-blur-md",
@@ -51,7 +38,7 @@ const THEMES: Record<string, ServiceTheme> = {
     button: "text-gray-300 hover:text-white group-hover:text-yellow-400",
     badge: "bg-yellow-500/10 text-yellow-400 border-yellow-500/20",
     accentColor: "yellow-400",
-    glowColor: "rgba(234,179,8,0.1)"
+    glowColor: "rgba(234,179,8,0.15)"
   },
   ecommerce: {
     card: "bg-[#0a0d16]/80 border-emerald-500/20 hover:border-emerald-500/40 shadow-2xl backdrop-blur-md",
@@ -62,7 +49,7 @@ const THEMES: Record<string, ServiceTheme> = {
     button: "text-gray-300 hover:text-white group-hover:text-emerald-400",
     badge: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
     accentColor: "emerald-500",
-    glowColor: "rgba(16,185,129,0.1)"
+    glowColor: "rgba(16,185,129,0.15)"
   }
 };
 
@@ -115,54 +102,54 @@ export const ServicesOverview = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.2 }
+      transition: { staggerChildren: 0.15, delayChildren: 0.2 }
     }
   };
 
   const itemVariants: Variants = {
-    hidden: { y: 20, opacity: 0, scale: 0.98 },
+    hidden: { y: 30, opacity: 0, scale: 0.95 },
     visible: {
       y: 0,
       opacity: 1,
       scale: 1,
-      transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
     }
   };
 
   return (
-    <section className="relative min-h-[100dvh] pt-28 pb-16 lg:pt-32 lg:pb-20 px-4 bg-transparent overflow-hidden">
+    <section className="relative min-h-[100dvh] pt-28 pb-16 lg:pt-32 lg:pb-20 px-4 bg-[#030710] overflow-hidden">
       {/* Ambient background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary/5 blur-[160px] pointer-events-none opacity-50" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-blue-900/5 blur-[160px] pointer-events-none opacity-50 mix-blend-screen" />
       
       {/* Section Transition Lines */}
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" />
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" />
 
-      <div className="max-w-7xl mx-auto w-full relative z-10">
+      <div className="max-w-[1400px] mx-auto w-full relative z-10">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-20 gap-10">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="inline-flex items-center gap-3 px-3 py-1.5 rounded-full glass-card border border-primary/20 text-blue-400 text-xxs font-black tracking-[0.2em] mb-8 uppercase">
+            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-lg bg-blue-900/20 border border-blue-500/30 text-blue-400 text-[10px] font-black tracking-[0.2em] mb-8 uppercase backdrop-blur-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" /> Nuestros Servicios
             </div>
-            <h2 className="text-headline-lg-mobile md:text-display-lg italic uppercase text-white">
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black uppercase text-white tracking-tighter leading-tight">
               Soluciones <br />
-              <span className="text-primary drop-shadow-[0_0_20px_rgba(37,99,235,0.4)]">Logísticas</span>
+              <span className="text-blue-500 drop-shadow-[0_0_20px_rgba(59,130,246,0.4)]">Logísticas</span>
             </h2>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-md lg:border-l lg:border-white/10 lg:pl-10"
           >
-            <p className="text-gray-400 text-body-lg">
+            <p className="text-gray-400 font-sans text-base font-light leading-relaxed">
               Infraestructura moderna para negocios que no se detienen. Inteligencia aplicada a cada kilómetro.
             </p>
           </motion.div>
@@ -173,7 +160,7 @@ export const ServicesOverview = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
+          viewport={{ once: true, margin: "-50px" }}
         >
           {services.map((service, idx) => {
             const theme = THEMES[service.theme as keyof typeof THEMES];
@@ -181,60 +168,60 @@ export const ServicesOverview = () => {
               <motion.div
                 key={idx}
                 variants={itemVariants}
-                whileHover={{ y: -10, transition: { duration: 0.3 } }}
+                whileHover={{ y: -5, transition: { duration: 0.4, ease: "easeOut" } }}
                 className={cn(
-                  "group p-6 lg:p-10 rounded-[32px] lg:rounded-[40px] glass-card transition-all duration-500 flex flex-col justify-between relative overflow-hidden",
+                  "group p-8 lg:p-10 rounded-2xl transition-all duration-500 flex flex-col justify-between relative overflow-hidden",
                   theme.card,
                   service.className
                 )}
               >
                 {/* Background Highlight on Hover */}
                 <div 
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" 
-                  style={{ background: `radial-gradient(circle at top right, ${theme.glowColor}, transparent)` }}
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none mix-blend-screen"
+                  style={{ background: `radial-gradient(circle at top right, ${theme.glowColor}, transparent 70%)` }}
                 />
 
                 <div className="relative z-10">
                   <div className={cn(
-                    "w-12 h-12 lg:w-16 lg:h-16 rounded-xl lg:rounded-2xl flex items-center justify-center mb-6 lg:mb-10 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6",
+                    "w-12 h-12 lg:w-14 lg:h-14 rounded-xl flex items-center justify-center mb-8 transition-transform duration-500 group-hover:scale-110",
                     theme.icon
                   )}>
-                    {React.cloneElement(service.icon as React.ReactElement<any>, { size: 28 })}
+                    {React.cloneElement(service.icon as React.ReactElement<any>, { size: 24, strokeWidth: 2.5 })}
                   </div>
 
-                  <h3 className={cn("text-headline-md mb-1 uppercase", theme.text)}>
+                  <h3 className={cn("font-display text-xl lg:text-2xl font-bold mb-2 uppercase tracking-wide", theme.text)}>
                     {service.title}
                   </h3>
-                  <p className={cn("text-label-sm uppercase mb-4", theme.accent)}>
+                  <p className={cn("font-sans text-xs font-bold uppercase tracking-widest mb-4", theme.accent)}>
                     {service.bajada}
                   </p>
-                  <div className={cn("text-body-md mb-6 max-w-[320px]", theme.desc)}>
+                  <div className={cn("font-sans text-sm font-light leading-relaxed mb-8 max-w-[320px]", theme.desc)}>
                     {service.desc}
                   </div>
                 </div>
 
-                <div className="relative z-10 flex items-center justify-between">
+                <div className="relative z-10 flex items-center justify-between mt-auto">
                   <Link
                     href={service.href}
-                    className={cn("flex items-center gap-3 text-label-md transition-all", theme.button)}
+                    className={cn("flex items-center gap-2 font-sans text-sm font-bold tracking-wide transition-colors uppercase", theme.button)}
                   >
-                    {service.buttonText} <ChevronRight size={16} />
+                    {service.buttonText} <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
                   </Link>
 
                   {service.badge && (
-                    <div className={cn("hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full text-[9px] font-black tracking-widest uppercase border", theme.badge)}>
+                    <div className={cn("hidden md:flex items-center gap-2 px-3 py-1.5 rounded-md text-[10px] font-black tracking-widest uppercase border", theme.badge)}>
                       {service.badge}
                     </div>
                   )}
                 </div>
 
                 {/* Decorative side border accent */}
-                <div className={cn("absolute top-1/2 -right-1 w-[2px] h-20 bg-gradient-to-b from-transparent via-white/10 to-transparent group-hover:via-current transition-all", theme.accent)} />
+                <div className={cn("absolute top-1/2 -right-px w-[2px] h-20 -translate-y-1/2 bg-gradient-to-b from-transparent via-white/10 to-transparent group-hover:via-current transition-all duration-500 opacity-0 group-hover:opacity-100", theme.accent)} />
 
                 {/* Specific Visual for the first card */}
                 {idx === 0 && (
-                  <div className="absolute top-10 right-10 opacity-5 group-hover:opacity-10 transition-opacity" aria-hidden="true">
-                    <MousePointer2 size={120} className="rotate-12 text-white" />
+                  <div className="absolute top-8 right-8 opacity-5 group-hover:opacity-10 transition-opacity duration-500" aria-hidden="true">
+                    <MousePointer2 size={100} className="rotate-12 text-white" strokeWidth={1} />
                   </div>
                 )}
               </motion.div>
