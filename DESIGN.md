@@ -1,133 +1,190 @@
-# Sistema de Diseño - Envíos DosRuedas (Stitch Design System)
-
-Este documento define el sistema de diseño para **Envíos DosRuedas**, una plataforma de logística y mensajería de última milla. Está optimizado para que desarrolladores y agentes de IA mantengan una visual y funcionalidad coherente y premium en todo el proyecto.
-
+---
+version: alpha
+name: Envíos DosRuedas
+colors:
+  primary: "#2563EB" # Primary Blue / Steel Azure
+  secondary: "#E89A17" # Secondary Gold / Sunflower Gold
+  background: "#050810" # Brand Dark / Floor
+  surface: "#0A0D16" # Surface / Steel Azure Dark
+  neutral: "#FFFFFF" # High Visibility White
+  error: "#EF4444"
+  success: "#22C55E"
+  warning: "#FDE400"
+  outline-variant: "rgba(255, 255, 255, 0.1)"
+typography:
+  display-lg:
+    fontFamily: Orbitron
+    fontSize: 48px
+    fontWeight: 900
+    lineHeight: 1.1
+    letterSpacing: -0.02em
+  display-md:
+    fontFamily: Orbitron
+    fontSize: 32px
+    fontWeight: 700
+    lineHeight: 1.2
+    letterSpacing: -0.01em
+  headline-lg:
+    fontFamily: Orbitron
+    fontSize: 24px
+    fontWeight: 700
+    lineHeight: 1.3
+    letterSpacing: 0.02em
+  headline-md:
+    fontFamily: Orbitron
+    fontSize: 24px
+    fontWeight: 600
+    lineHeight: 1.3
+  body-lg:
+    fontFamily: Roboto
+    fontSize: 18px
+    fontWeight: 400
+    lineHeight: 1.6
+  body-md:
+    fontFamily: Roboto
+    fontSize: 16px
+    fontWeight: 400
+    lineHeight: 1.5
+  label-md:
+    fontFamily: Roboto
+    fontSize: 14px
+    fontWeight: 700
+    lineHeight: 1.2
+    letterSpacing: 0.05em
+  label-sm:
+    fontFamily: Roboto
+    fontSize: 12px
+    fontWeight: 400
+    lineHeight: 1.2
+    letterSpacing: 0.1em
+  code-tracking:
+    fontFamily: Orbitron
+    fontSize: 16px
+    fontWeight: 400
+    lineHeight: 1.0
+    letterSpacing: 0.1em
+  mono:
+    fontFamily: JetBrains Mono
+    fontSize: 14px
+    fontWeight: 400
+rounded:
+  sm: 4px
+  md: 8px
+  lg: 12px
+  xl: 16px
+  extreme: 40px
+  super: 60px
+  full: 9999px
+spacing:
+  base: 4px
+  xs: 4px
+  sm: 8px
+  md: 16px
+  lg: 24px
+  xl: 32px
+  gutter: 20px
+  margin: 32px
+  container-max: 1400px
+components:
+  button-primary:
+    backgroundColor: "{colors.primary}"
+    textColor: "#FFFFFF"
+    rounded: "{rounded.md}"
+    typography: "{typography.label-md}"
+  button-cta:
+    backgroundColor: "{colors.secondary}"
+    textColor: "{colors.background}"
+    rounded: "{rounded.md}"
+    typography: "{typography.label-md}"
+  input:
+    backgroundColor: "rgba(0, 0, 0, 0.2)"
+    rounded: "{rounded.md}"
+    borderColor: "{colors.outline-variant}"
 ---
 
-## 1. Misión, Visión y Personalidad de Marca
+## Overview
 
-*   **Eslogan**: "Tu Solución Confiable".
-*   **Pilares**: Rapidez, Seguridad, Modernidad y Confianza.
-*   **Voz**: Profesional, tecnológica, eficiente y de "urgencia controlada".
-*   **Personalidad**: Autoritaria y enérgica. Se aleja de los grises planos corporativos tradicionales hacia una estética saturada y de alto contraste inspirada en la señalética industrial y los tableros de alto rendimiento.
+Envíos DosRuedas es una plataforma de logística y mensajería de última milla líder en Mar del Plata. Nuestra identidad visual comunica **rapidez, seguridad, modernidad y confianza**.
 
----
+La personalidad de la marca es **autoritaria y enérgica**, inspirada en la señalética industrial y los tableros de alto rendimiento. Adoptamos una estética "Corporate / Modern" caracterizada por capas tonales, bordes nítidos y un alto contraste que transmite precisión tecnológica y urgencia controlada.
 
-## 2. Principios de Diseño
+### Principios de Diseño
+1.  **Eficiencia Visual y Densidad**: Priorizamos la densidad de datos sobre los espacios abiertos para captar información clave de un solo vistazo (Cockpit Dense).
+2.  **Modernidad de Alto Contraste**: Uso de fondos oscuros profundos (Brand Dark) combinados con acentos en Azul Primario y Oro Secundario.
+3.  **Profundidad por Capas Tonales**: La jerarquía se establece mediante cambios de color de fondo y bordes nítidos (Ghost Borders) en lugar de sombras pesadas.
+4.  **Precisión Geométrica**: Diseños estructurados alineados a una grilla de línea base de 4px que transmite precisión milimétrica.
 
-1.  **Eficiencia Visual y Densidad**: El usuario debe captar la información clave (rutas, estados, cotizaciones) de un solo vistazo. Se prioriza la densidad de datos sobre los espacios excesivamente abiertos.
-2.  **Modernidad de Alto Contraste**: Uso de fondos oscuros profundos y envolventes combinados con acentos amarillos de alta visibilidad para que las alertas y CTAs críticos sean imposibles de pasar por alto.
-3.  **Profundidad por Capas Tonales**: En lugar de sombras tradicionales (difíciles de ver sobre fondos oscuros), la jerarquía se establece mediante cambios de color de fondo y bordes nítidos.
-4.  **Precisión Geométrica**: Diseños estructurados y alineados a grilla que transmiten precisión milimétrica en la logística.
+## Colors
 
----
+Nuestra paleta está optimizada para reducir la fatiga visual durante turnos operativos prolongados, manteniendo una visibilidad crítica para alertas y estados.
 
-## 3. Identidad Visual
+- **Primary Blue (#2563EB):** Representa tecnología y fiabilidad. Usado para navegación, botones primarios y estados activos.
+- **Secondary Gold (#E89A17):** El color de "acción". Reservado para CTAs críticos, alertas de urgencia y estados de advertencia.
+- **Brand Dark (#050810):** El "suelo" de la aplicación. Un fondo profundo que proporciona el máximo contraste.
+- **Steel Azure (#0A0D16):** Color de superficie para tarjetas y contenedores.
+- **Neutral White (#FFFFFF):** Utilizado para texto de cuerpo y legibilidad máxima.
 
-### 3.1 Paleta de Colores Semántica
+## Typography
 
-La paleta está restringida intencionalmente para maximizar el contraste funcional y reducir la fatiga visual durante turnos de trabajo prolongados:
+Utilizamos una estrategia de doble fuente para equilibrar el carácter de la marca con la utilidad operativa.
 
-| Rol Semántico | Color Hex | Clase Tailwind de Referencia | Uso |
-| :--- | :--- | :--- | :--- |
-| **Amarillo de Acción (Primary)** | `#FFE600` / `#FDE400` | `text-secondary` / `text-yellow-400` | Títulos principales, botones de llamada a la acción (CTA) y estados de alerta crítica. |
-| **Azul Náutico (Secondary/Surface)** | `#00246B` / `#0A0D16` | `bg-slate-900` / `bg-[#0a0d16]` | Color base para tarjetas, contenedores de interfaz y secciones destacadas. |
-| **Azul Cobalto (Tertiary/Accent)** | `#0047AB` / `#001A4D` | `bg-primary` / `text-blue-400` | Estados interactivos (hover), barras de progreso, acentos visuales y bordes secundarios. |
-| **Blanco de Alta Visibilidad (Neutral)** | `#FFFFFF` | `text-white` | Texto de cuerpo principal, etiquetas legibles y detalles de íconos. |
-| **Fondo Base (Floor/Level 0)** | `#121414` / `#030710` | `bg-background` / `bg-[#030710]` | El fondo más profundo de la aplicación en modo oscuro. |
+- **Orbitron (Display & Branding):** Tipografía geométrica y técnica. Reservada para encabezados, logotipos, códigos de seguimiento y branding.
+- **Roboto (Sans / Body):** Nuestra fuente de trabajo para todo el texto de la interfaz, formularios y descripciones. Asegura legibilidad excepcional en densidades altas.
+- **JetBrains Mono:** Reservada para datos técnicos, coordenadas, marcas de tiempo y dashboards de alta densidad.
 
-### 3.2 Tipografía
+## Layout
 
-El sistema emplea una estrategia de doble fuente para equilibrar el carácter de la marca con la utilidad operativa:
+El sistema sigue un modelo de **Grilla Técnica** con una unidad base de 4px.
 
-*   **Display (Headers & Tracking)**: `Orbitron` (Variable: `--font-orbitron`).
-    *   **Uso**: Títulos principales de sección, encabezados Hero, logotipos y códigos de seguimiento. Su estructura geométrica y postura ancha brindan una apariencia técnica, de urgencia y futurista. Deben renderizarse preferentemente en amarillo o blanco.
-    *   **Clases**:
-        *   `text-display-lg`: Orbitron 48px | Weight 900 | LH 1.1 | LS -0.02em
-        *   `text-display-md`: Orbitron 32px | Weight 700 | LH 1.2 | LS -0.01em
-        *   `text-headline-lg`: Orbitron 24px | Weight 700 | LH 1.3 | LS 0.02em
-        *   `text-headline-lg-mobile`: Orbitron 20px | Weight 700 | LH 1.3
-        *   `text-code-tracking`: Orbitron 16px | Weight 400 | LH 1.0 | LS 0.1em
-*   **Sans (Body & Labels)**: `Roboto` (Variable: `--font-roboto`).
-    *   **Uso**: Párrafos, formularios, etiquetas de botones, tablas e información de métricas. Su legibilidad es excelente incluso en tamaños pequeños. El texto de cuerpo debe permanecer en blanco o plata claro (`text-gray-300`).
-    *   **Clases**:
-        *   `text-body-lg`: Roboto 18px | Weight 400 | LH 1.6
-        *   `text-body-md`: Roboto 16px | Weight 400 | LH 1.5
-        *   `text-label-md`: Roboto 14px | Weight 700 | LH 1.2 | LS 0.05em
-        *   `text-label-sm`: Roboto 12px | Weight 400 | LH 1.2 | LS 0.1em
+- **Grilla:** 12 columnas fluidas para escritorio y 4 columnas para móvil.
+- **Contenedor:** Ancho máximo de 1400px con márgenes laterales de 32px.
+- **Escala de Espaciado:** Todos los márgenes y rellenos deben ser múltiplos de 4 (4, 8, 12, 16, 24, 32).
 
----
+## Elevation & Depth
 
-## 4. Layout, Espaciado y Grilla
+La profundidad se comunica a través de **Capas Tonales** y **Luminiscencia**, evitando sombras difusas que ensucian el diseño oscuro.
 
-*   **Grilla**: 12 columnas fluidas para escritorio (desktop) y 4 columnas para móvil.
-*   **Espaciado**: Basado en una escala rítmica de espaciado adaptado al Stitch Design System:
-    *   `xs` / `base`: 4px
-    *   `sm`: 8px
-    *   `md` / `gutter` / `margin-mobile`: 16px
-    *   `lg` / `margin-desktop`: 32px
-    *   `xl`: 64px
-    *   `container-max`: 1400px
-*   **Clases de Tailwind**: Se extienden los tokens nativos de Tailwind (`p-xs`, `gap-sm`, `m-md`, `w-container-max`, etc.) para permitir el uso directo de la escala en toda la aplicación.
+1.  **Nivel 0 (Floor)**: Fondo base `#050810`.
+2.  **Nivel 1 (Surface)**: Tarjetas sobre fondo base usando `#0A0D16`.
+3.  **Nivel 2 (Raised)**: Bordes nítidos de 1px (`white/10`) para definir límites de componentes.
+4.  **Efecto Glow**: Sutiles resplandores exteriores en Azul Primario o Oro para indicar estados activos o selección.
 
----
+## Shapes
 
-## 5. Elevación y Capas Tonales (Tonal Layering)
+El lenguaje de formas es **Estructurado y Técnico**, equilibrando la precisión con la modernidad.
 
-Establecemos la jerarquía visual utilizando capas de color en lugar de sombras difusas:
+- **Radio de Bordes:**
+    - Estándar: `0.5rem` (8px) para elementos interactivos.
+    - Contenedores: `0.75rem` (12px) para tarjetas operativas.
+    - Grandes: `2.5rem` (40px) para secciones decorativas o contenedores de landing.
+- **Botones:** Deben ser rectangulares con puntas suavizadas; evitar formas de píldora completas (`rounded-full`) para mantener el rigor industrial.
 
-1.  **Capa 0 (Floor - Suelo)**: El color de fondo más oscuro de la aplicación (`#121414` o `#030710`).
-2.  **Capa 1 (Surface - Superficie)**: Color base para tarjetas y contenedores (`#00246B` o `#0a0d16`).
-3.  **Capa 2 (Raised - Elevado)**: Acento de azul cobalto (`#0047AB`) o uso de bordes nítidos de 1px en blanco con 10% de opacidad (`border-white/10`) para delimitar tarjetas.
-4.  **Capa Interactiva (Hover/Enfoque)**: Los estados de selección u hover en las tarjetas deben emplear un brillo sutil o un borde izquierdo sólido de 2px en amarillo de acción.
+## Components
 
----
+### Botones
+- **Primario**: Fondo Azul Primario con texto blanco.
+- **CTA**: Fondo Oro Secundario con texto oscuro (`#050810`).
+- **Ghost/Outline**: Sin fondo con borde de 1px y texto en color de acento.
 
-## 6. Formas y Bordes
+### Campos de Entrada (Inputs)
+Fondo oscuro con borde de 1px (`white/10`). Al enfocarse, el borde cambia a Azul Primario con un anillo de enfoque sutil. Etiquetas siempre posicionadas arriba del campo.
 
-*   **Radio de Bordes**: Sistema de radios de borde estandarizado:
-    *   `rounded-sm`: 0.25rem (4px) para pequeños elementos interactivos.
-    *   `rounded` (DEFAULT): 0.5rem (8px) para botones y controles del dashboard.
-    *   `rounded-md`: 0.75rem (12px) para componentes medianos.
-    *   `rounded-lg`: 1rem (16px) para tarjetas operativas estándar.
-    *   `rounded-xl`: 1.5rem (24px) para grandes paneles contenedores y landing sections.
-    *   `rounded-full`: 9999px para círculos o avatares.
-*   **Botones**: Evitar formas de píldora completas (`rounded-full`) para mantener la alineaición con la grilla y el aspecto técnico de logística.
+### Badges de Estado
+- **Express**: Gradiente rojo/naranja.
+- **Lowcost**: Cyan / Azul claro.
+- **Flex**: Amarillo / Oro.
+- **E-Commerce**: Verde Esmeralda.
 
----
+## Do's and Don'ts
 
-## 7. Componentes Clave
+### ✅ Do's
+- Usa siempre múltiplos de 4px para espaciado.
+- Prioriza el contraste AAA para texto crítico.
+- Utiliza Orbitron solo para branding y títulos cortos de alto impacto.
+- Mantén los bordes nítidos (1px) para simular una interfaz de instrumentos (Cockpit).
 
-### 7.1 Botones
-*   **Primario**: Fondo amarillo de acción (`#FFE600`), texto azul náutico oscuro (`#00246B`), fuente seminegrita.
-*   **Secundario**: Fondo transparente con un borde amarillo de acción de 2px y texto amarillo.
-*   **Ghost**: Texto blanco sin fondo, para acciones secundarias o de utilidad de baja prioridad.
-
-### 7.2 Campos de Entrada (Inputs)
-Fondo ligeramente más oscuro que la tarjeta en la que residen. Borde inicial cobalto de 1px, cambiando a un trazo amarillo de 2px al enfocarse (`focus-visible`). Etiquetas siempre arriba del campo en estilo `label-md`.
-
-### 7.3 Badges y Etiquetas de Estado
-De alto contraste para lecturas rápidas de envíos:
-*   **En Tránsito / Normal**: Fondo verde/azul cobalto con texto contrastante.
-*   **Precaución / Pendiente (Warning)**: Fondo amarillo con texto azul oscuro.
-*   **Crítico / Atrasado (Critical)**: Fondo rojo brillante con texto blanco.
-*   **Completado (Success)**: Fondo menta brillante con texto azul.
-
-### 7.4 Tablas de Datos
-Las filas deben alternar colores (Capa 1 y un azul ligeramente más claro) para facilitar la lectura transversal. Encabezados fijos (`sticky`) en estilo `label-md`.
-
----
-
-## 8. Do's and Don'ts (Reglas para IA)
-
-### ✅ SÍ Hacer (Do's)
-*   Usa siempre `cn()` para concatenar y fusionar dinámicamente clases de Tailwind.
-*   Asegura que el texto sobre fondos de color tenga un contraste excelente (`text-white` o `text-gray-300` sobre fondos oscuros).
-*   Emplea el amarillo (`text-secondary` o `#FFE600`) únicamente para encabezados, CTAs clave o estados importantes.
-*   Mantén las líneas de borde nítidas (`border-white/10` o `border-white/5`) para simular paneles de control técnicos.
-
-### ❌ NO Hacer (Don'ts)
-*   No uses colores de fondo claros (`bg-white`, `bg-slate-50`) para componentes globales de la página de inicio que interrumpan la visual oscura premium.
-*   No uses botones tipo píldora (`rounded-full`) en interfaces densas o de dashboard.
-*   No uses sombras borrosas sobre fondos oscuros profundos; prefiere bordes nítidos (`border-white/10`) y variaciones tonales.
-*   No mezcles fuentes display fuera del logotipo y encabezados principales. El cuerpo debe usar la fuente sans (`Hanken Grotesk` / `Montserrat`).
+### ❌ Don'ts
+- No uses la fuente 'Inter' o serifas genéricas.
+- No uses negro puro (#000000); usa Brand Dark (#050810).
+- No uses sombras pesadas o difusas sobre fondos oscuros.
+- No uses botones tipo píldora en el dashboard operativo.
