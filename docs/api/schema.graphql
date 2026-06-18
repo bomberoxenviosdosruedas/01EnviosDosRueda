@@ -1,0 +1,140 @@
+"""
+Schema de GraphQL para Dos Ruedas Pro.
+Mapea el dominio logístico de Mar del Plata a un sistema de tipos fuertemente tipado.
+"""
+
+scalar DateTime
+scalar Decimal
+
+"""
+Directiva para control de complejidad de consultas.
+Se utiliza para prevenir ataques de denegación de servicio mediante consultas profundamente anidadas.
+"""
+directive @complexity(
+  value: Int!
+  multipliers: [String!]
+) on FIELD_DEFINITION
+
+"""
+Metadatos de Federación (Apollo Federation).
+Permite que este grafo sea parte de una arquitectura de microservicios distribuida.
+"""
+directive @key(fields: String!) on OBJECT | INTERFACE
+directive @extends on OBJECT | INTERFACE
+directive @external on FIELD_DEFINITION
+
+enum ServiceType {
+  EXPRESS
+  LOW_COST
+  PUNTO_DE_RETIRO
+}
+
+enum OrderStatus {
+  PENDIENTE
+  EN_CURSO
+  ENTREGADO
+  CANCELADO
+}
+
+enum EtiquetaStatus {
+  PENDIENTE
+  IMPRESA
+  EN_CAMINO
+  ENTREGADA
+  NO_ENTREGADA
+}
+
+type Client @key(fields: "id") {
+  id: ID!
+  name: String!
+  lastName: String
+  phone: String
+  email: String
+  address: String!
+  addressLat: Decimal
+  addressLng: Decimal
+  isActive: Boolean!
+  orders: [Order!]! @complexity(value: 5)
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Order @key(fields: "id") {
+  id: ID!
+  client: Client
+  repartidor: Repartidor
+  serviceType: ServiceType!
+  status: OrderStatus!
+  originAddress: String!
+  destinationAddress: String!
+  quotedPrice: Decimal
+  distanceText: String
+  durationText: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Repartidor @key(fields: "id") {
+  id: ID!
+  name: String!
+  phone: String!
+  vehicleType: String!
+  licensePlate: String!
+  isActive: Boolean!
+  orders: [Order!]! @complexity(value: 10)
+  etiquetas: [Etiqueta!]!
+}
+
+type Etiqueta {
+  id: ID!
+  orderNumber: String
+  tipoEnvio: ServiceType!
+  status: EtiquetaStatus!
+  remitenteNombre: String!
+  destinatarioNombre: String!
+  repartidor: Repartidor
+}
+
+type Quote {
+  price: Decimal!
+  distanceKm: Float!
+  estimatedDuration: String!
+}
+
+input QuoteInput {
+  originAddress: String!
+  destinationAddress: String!
+  serviceType: ServiceType!
+}
+
+input UpdateOrderStatusInput {
+  orderId: ID!
+  status: OrderStatus!
+}
+
+type Query {
+  """Obtener un cliente por ID"""
+  client(id: ID!): Client
+
+  """Listar órdenes con paginación"""
+  orders(limit: Int, offset: Int): [Order!]! @complexity(value: 1, multipliers: ["limit"])
+
+  """Obtener cotización instantánea"""
+  calculateQuote(input: QuoteInput!): Quote!
+
+  """Ver estado de mi envío (Seguimiento público)"""
+  trackOrder(orderId: ID!): Order
+}
+
+type Mutation {
+  """Actualizar estado de envío (Solo personal autorizado)"""
+  updateOrderStatus(input: UpdateOrderStatusInput!): Order!
+
+  """Asignar repartidor a una orden"""
+  assignCourier(orderId: ID!, courierId: ID!): Order!
+}
+
+type Subscription {
+  """Suscripción en tiempo real para cambios de estado en un envío específico"""
+  orderStatusChanged(orderId: ID!): Order!
+}

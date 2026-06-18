@@ -1,0 +1,348 @@
+openapi: 3.1.0
+info:
+  title: Dos Ruedas Pro API
+  description: >
+    API de gestión logística para Envios DosRuedas en Mar del Plata.
+    Esta API permite la gestión de clientes, órdenes de envío, seguimiento de repartidores,
+    generación de etiquetas y cálculo dinámico de tarifas.
+  version: 1.0.0
+  contact:
+    name: Soporte Técnico Dos Ruedas Pro
+    email: soporte@dosruedas.com.ar
+
+servers:
+  - url: https://api.dosruedas.com.ar/v1
+    description: Servidor de Producción
+  - url: http://localhost:3000/api/v1
+    description: Servidor de Desarrollo
+
+tags:
+  - name: Operaciones
+    description: Acciones críticas del negocio (cotización, ruteo).
+  - name: Órdenes
+    description: Gestión del ciclo de vida de los envíos.
+  - name: Clientes
+    description: Administración de la cartera de clientes.
+  - name: Bulk
+    description: Operaciones masivas para alta eficiencia.
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Utilizado para sesiones de usuario (Dashboard de Repartidor/Admin).
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+      description: Utilizado para integraciones de terceros (E-commerce).
+
+  parameters:
+    PageParam:
+      name: page
+      in: query
+      schema:
+        type: integer
+        default: 1
+      description: Número de página para paginación.
+    LimitParam:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        default: 20
+      description: Cantidad de resultados por página.
+    CursorParam:
+      name: cursor
+      in: query
+      schema:
+        type: string
+      description: Cursor para paginación basada en punteros (Recomendado para feeds).
+
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: RESOURCE_NOT_FOUND
+        message:
+          type: string
+          example: No se encontró el recurso solicitado.
+        details:
+          type: object
+          description: Información adicional sobre el error (ej. errores de validación).
+
+    Client:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        lastName:
+          type: string
+          nullable: true
+        phone:
+          type: string
+          nullable: true
+        email:
+          type: string
+          format: email
+          nullable: true
+        address:
+          type: string
+        addressLat:
+          type: number
+          format: decimal
+        addressLng:
+          type: number
+          format: decimal
+        isActive:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    Order:
+      type: object
+      properties:
+        id:
+          type: integer
+        clientId:
+          type: integer
+          nullable: true
+        repartidorId:
+          type: integer
+          nullable: true
+        serviceType:
+          $ref: '#/components/schemas/ServiceType'
+        status:
+          $ref: '#/components/schemas/OrderStatus'
+        originAddress:
+          type: string
+        destinationAddress:
+          type: string
+        quotedPrice:
+          type: number
+          format: decimal
+        distanceText:
+          type: string
+        durationText:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+
+    ServiceType:
+      type: string
+      enum: [EXPRESS, LOW_COST, PUNTO_DE_RETIRO]
+
+    OrderStatus:
+      type: string
+      enum: [PENDIENTE, EN_CURSO, ENTREGADO, CANCELADO]
+
+    QuoteRequest:
+      type: object
+      required: [originAddress, destinationAddress, serviceType]
+      properties:
+        originAddress:
+          type: string
+          example: "Friuli 1972, Mar del Plata"
+        destinationAddress:
+          type: string
+          example: "Güemes 2500, Mar del Plata"
+        serviceType:
+          $ref: '#/components/schemas/ServiceType'
+
+    QuoteResponse:
+      type: object
+      properties:
+        distanceKm:
+          type: number
+        price:
+          type: number
+        estimatedDuration:
+          type: string
+        currency:
+          type: string
+          default: ARS
+
+paths:
+  /orders/quote:
+    post:
+      operationId: calculateQuote
+      summary: Calcular tarifa de envío
+      description: Obtiene una cotización dinámica basada en la distancia entre dos puntos en Mar del Plata.
+      tags: [Operaciones]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuoteRequest'
+      responses:
+        '200':
+          description: Cotización generada exitosamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteResponse'
+        '400':
+          description: Datos de entrada inválidos.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /orders:
+    get:
+      operationId: listOrders
+      summary: Listar órdenes
+      description: Retorna una lista paginada de todas las órdenes registradas en el sistema.
+      tags: [Órdenes]
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+        - $ref: '#/components/parameters/CursorParam'
+      responses:
+        '200':
+          description: Lista de órdenes.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+    post:
+      operationId: createOrder
+      summary: Crear nueva orden
+      description: Registra una nueva solicitud de envío en la plataforma.
+      tags: [Órdenes]
+      security:
+        - BearerAuth: []
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        '201':
+          description: Orden creada.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+
+  /orders/bulk:
+    post:
+      operationId: bulkCreateOrders
+      summary: Creación masiva de órdenes
+      description: Permite crear múltiples órdenes en una sola petición. Ideal para integraciones e-commerce con ruteo diario.
+      tags: [Bulk]
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                orders:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Order'
+      responses:
+        '207':
+          description: Procesamiento multi-estado (algunas pueden fallar).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        status:
+                          type: integer
+                          example: 201
+
+  /orders/{id}/status:
+    patch:
+      operationId: updateOrderStatus
+      summary: Actualizar estado de una orden
+      description: Modifica el estado actual de un envío (ej. de PENDIENTE a EN_CURSO).
+      tags: [Órdenes]
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  $ref: '#/components/schemas/OrderStatus'
+      responses:
+        '200':
+          description: Estado actualizado.
+
+  /clients:
+    get:
+      operationId: listClients
+      summary: Listar clientes
+      description: Obtiene la lista de clientes registrados en la plataforma.
+      tags: [Clientes]
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+      responses:
+        '200':
+          description: Lista de clientes.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Client'
+
+webhooks:
+  orderStatusUpdate:
+    description: Notificación enviada cuando el estado de una orden cambia.
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                orderId:
+                  type: integer
+                newStatus:
+                  $ref: '#/components/schemas/OrderStatus'
+                timestamp:
+                  type: string
+                  format: date-time
+      responses:
+        '200':
+          description: Webhook recibido correctamente.
