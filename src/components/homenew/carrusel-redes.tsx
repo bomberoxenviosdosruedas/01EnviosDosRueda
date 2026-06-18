@@ -9,14 +9,14 @@ const socialNetworks = [
     name: "Instagram",
     icon: Instagram,
     href: "https://instagram.com/enviosdosruedas",
-    color: "hsl(45, 93%, 47%)",
+    color: "#E1306C",
     description: "Novedades diarias",
   },
   {
     name: "Facebook",
     icon: Facebook,
     href: "https://facebook.com/enviosdosruedas",
-    color: "hsl(221.2, 83.2%, 53.3%)",
+    color: "#1877F2",
     description: "Comunidad activa",
   },
   {
@@ -70,45 +70,57 @@ export const CarruselRedes = () => {
   }
 
   return (
-    <section className="py-32 px-6 bg-surface-light overflow-hidden relative">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-1/2 bg-primary/5 blur-[120px] pointer-events-none" />
+    <section className="py-24 lg:py-32 px-4 bg-[#030710] overflow-hidden relative">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-1/2 bg-blue-600/5 blur-[150px] pointer-events-none mix-blend-screen" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-20">
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 border border-secondary/20 text-yellow-500 text-xxs font-bold tracking-widest mb-6 uppercase">
-              <Heart size={12} className="fill-yellow-500" /> CONECTA CON NOSOTROS
+      <div className="max-w-[1400px] mx-auto relative z-10">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10 mb-20">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-lg bg-yellow-400/10 border border-yellow-400/20 text-yellow-400 text-[10px] font-black tracking-[0.3em] mb-8 uppercase backdrop-blur-sm">
+              <Heart size={14} className="fill-yellow-400 animate-pulse" /> Conectá con Nosotros
             </div>
-            <h2 className="font-[family-name:var(--font-orbitron)] text-4xl md:text-5xl font-black text-white uppercase italic tracking-tighter">
-              SIGUE NUESTRO <span className="text-secondary">MOVIMIENTO</span>
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black text-white uppercase tracking-tighter leading-tight">
+              Sigue nuestro <br className="hidden md:block"/>
+              <span className="text-blue-500 drop-shadow-[0_0_20px_rgba(59,130,246,0.4)]">Movimiento</span>
             </h2>
-            <p className="text-gray-400 text-lg mt-4 font-[family-name:var(--font-roboto)] max-w-xl">
+            <p className="text-gray-400 font-sans text-lg mt-6 font-light max-w-xl leading-relaxed">
               Únete a nuestra comunidad digital y mantente al día con las últimas noticias de logística en Mar del Plata.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="flex gap-4">
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex flex-wrap gap-4"
+          >
             {socialNetworks.map((net, idx) => (
               <button
                 key={idx}
                 onClick={net.isWhatsApp ? handleWhatsAppClick : () => window.open(net.href, "_blank")}
-                className="group flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 hover:bg-white/10 transition-all text-slate-900"
+                className="group flex items-center gap-4 p-4 rounded-xl bg-[#0f172a] border border-white/5 hover:border-blue-500/30 hover:bg-[#1e293b] transition-all duration-300 shadow-lg active:scale-95"
                 aria-label={`Seguinos en ${net.name}`}
               >
                 <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110"
+                  className="w-12 h-12 rounded-lg flex items-center justify-center transition-transform duration-500 group-hover:scale-110 shadow-inner"
                   style={{ backgroundColor: `${net.color}15`, color: net.color }}
                   aria-hidden="true"
                 >
-                  <net.icon size={24} />
+                  <net.icon size={20} strokeWidth={2.5} />
                 </div>
-                <div className="text-left hidden lg:block">
-                  <div className="text-sm font-bold font-[family-name:var(--font-orbitron)] tracking-tight uppercase">{net.name}</div>
-                  <div className="text-xxs text-gray-400 uppercase tracking-widest">{net.description}</div>
+                <div className="text-left hidden lg:block pr-4">
+                  <div className="font-display text-sm font-bold text-white tracking-wide uppercase">{net.name}</div>
+                  <div className="font-sans text-[10px] font-medium text-gray-500 uppercase tracking-widest">{net.description}</div>
                 </div>
               </button>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         <div className="relative group/carousel">
@@ -116,7 +128,7 @@ export const CarruselRedes = () => {
             <motion.div
               className="flex gap-6"
               animate={{ x: [0, -1000] }}
-              transition={{ repeat: Infinity, duration: 40, ease: "linear" as any }}
+              transition={{ repeat: Infinity, duration: 30, ease: "linear" as any }}
               whileHover={{ animationPlayState: 'paused' }}
             >
               {[...feedItems, ...feedItems, ...feedItems].map((item, idx) => (
@@ -125,18 +137,18 @@ export const CarruselRedes = () => {
                   href={(item as any).postUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-72 h-72 shrink-0 rounded-3xl overflow-hidden relative group border border-white/10 shadow-2xl transition-all hover:border-primary/50 block"
+                  className="w-64 h-64 lg:w-80 lg:h-80 shrink-0 rounded-2xl overflow-hidden relative group border border-white/5 shadow-2xl transition-all hover:border-blue-500/50 block"
                   aria-label={`Ver publicación ${item.id} en ${item.type === 'ig' ? 'Instagram' : 'Facebook'}`}
                 >
-                  <img src={item.image} alt={`Publicación de ${item.type === 'ig' ? 'Instagram' : 'Facebook'}`} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-surface-light/80 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-6 p-8">
-                    <div className="w-16 h-16 rounded-2xl bg-primary/20 backdrop-blur-md border border-primary/30 flex items-center justify-center text-slate-900">
-                      {item.type === 'ig' && <Instagram size={32} />}
-                      {item.type === 'fb' && <Facebook size={32} />}
+                  <img src={item.image} alt={`Publicación de ${item.type === 'ig' ? 'Instagram' : 'Facebook'}`} className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-[#0a0d16]/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center justify-center gap-6 p-8 backdrop-blur-sm">
+                    <div className="w-14 h-14 rounded-xl bg-blue-500/20 backdrop-blur-md border border-blue-500/30 flex items-center justify-center text-white shadow-[0_0_20px_rgba(59,130,246,0.3)]">
+                      {item.type === 'ig' && <Instagram size={24} />}
+                      {item.type === 'fb' && <Facebook size={24} />}
                     </div>
                     <div className="text-center">
-                      <div className="text-slate-900 font-[family-name:var(--font-orbitron)] font-bold uppercase tracking-tight mb-2">VER POST</div>
-                      <ExternalLink size={20} className="text-secondary mx-auto" />
+                      <div className="font-display text-white text-sm font-bold uppercase tracking-widest mb-3">VER POST</div>
+                      <ExternalLink size={18} className="text-yellow-400 mx-auto" />
                     </div>
                   </div>
                 </a>
@@ -145,8 +157,8 @@ export const CarruselRedes = () => {
           </div>
 
           {/* Side Gradients */}
-          <div className="absolute top-0 left-0 w-40 h-full bg-gradient-to-r from-surface-light to-transparent z-10 pointer-events-none" />
-          <div className="absolute top-0 right-0 w-40 h-full bg-gradient-to-l from-surface-light to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-[#030710] to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-[#030710] to-transparent z-10 pointer-events-none" />
         </div>
       </div>
     </section>

@@ -38,119 +38,118 @@ export const EmprendedoresHome = () => {
   ];
 
   return (
-    <section className="relative min-h-[100dvh] flex items-center py-20 lg:py-32 px-4 overflow-hidden bg-transparent">
+    <section className="relative min-h-[100dvh] flex items-center py-20 lg:py-32 px-4 overflow-hidden bg-[#0a0d16]">
       {/* Background Decorative Tech Elements */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-[0.05]">
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-[0.03]">
         <Image
           src="/hero/delivery_background.jpeg"
           alt="Background Delivery"
           fill
-          className="object-cover"
+          className="object-cover grayscale"
         />
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary rounded-full blur-[150px] mix-blend-screen" />
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_20%,#3b82f633_0,transparent_50%)]" />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-600/20 rounded-full blur-[180px] mix-blend-screen" />
+        <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-[#0a0d16] to-transparent" />
       </div>
 
-      <div className="max-w-7xl mx-auto w-full relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 mb-24 items-end">
+      <div className="max-w-[1400px] mx-auto w-full relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 mb-20 items-end">
           <div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 text-secondary text-xxs font-black tracking-[0.4em] mb-10 uppercase backdrop-blur-md"
+              viewport={{ once: true, margin: "-50px" }}
+              className="inline-flex items-center gap-3 px-4 py-2 rounded-md bg-yellow-400/10 border border-yellow-400/20 text-yellow-400 text-[10px] font-black tracking-[0.3em] mb-8 uppercase backdrop-blur-sm"
             >
-              <Building2 size={16} className="animate-pulse" /> Soluciones Corporativas y PyME
+              <Building2 size={14} className="animate-pulse" /> Soluciones Corporativas y PyME
             </motion.div>
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-headline-lg-mobile md:text-display-lg italic text-white uppercase"
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="font-display text-4xl md:text-5xl lg:text-6xl font-black text-white uppercase tracking-tighter leading-tight"
             >
-              Potencia tu <span className="text-primary drop-shadow-[0_0_20px_rgba(37,99,235,0.4)]">Logística</span> <br />
-              con <span className="text-secondary drop-shadow-[0_0_15px_rgba(234,179,8,0.2)]">DosRuedas</span>
+              Potencia tu <br />
+              <span className="text-blue-500 drop-shadow-[0_0_20px_rgba(59,130,246,0.4)]">Logística</span> con <br className="hidden md:block"/>
+              <span className="text-yellow-400 drop-shadow-[0_0_15px_rgba(250,204,21,0.2)]">DosRuedas</span>
             </motion.h2>
           </div>
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:border-l lg:border-white/10 lg:pl-12"
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:border-l lg:border-white/10 lg:pl-10 max-w-md"
           >
-            <p className="text-gray-400 text-body-lg mb-10">
+            <p className="text-gray-400 font-sans text-base font-light leading-relaxed mb-8">
               Transformamos la última milla de tu empresa con una flota ágil y especializada de alta precisión. Beneficios exclusivos para clientes corporativos.
             </p>
-            <div className="flex gap-8">
-              <div className="flex flex-col gap-1">
-                <span className="text-secondary text-headline-md italic uppercase">500+</span>
-                <span className="text-label-sm text-gray-500 uppercase">Empresas</span>
+            <div className="flex gap-10">
+              <div className="flex flex-col gap-2">
+                <span className="font-display text-3xl font-black text-yellow-400 tracking-tighter">500+</span>
+                <span className="font-sans text-[10px] font-bold text-gray-500 uppercase tracking-widest">Empresas</span>
               </div>
-              <div className="flex flex-col gap-1">
-                <span className="text-secondary text-headline-md italic uppercase">24/7</span>
-                <span className="text-label-sm text-gray-500 uppercase">Operativa</span>
+              <div className="flex flex-col gap-2">
+                <span className="font-display text-3xl font-black text-blue-500 tracking-tighter">24/7</span>
+                <span className="font-sans text-[10px] font-bold text-gray-500 uppercase tracking-widest">Operativa</span>
               </div>
             </div>
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 h-auto lg:h-[650px]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-auto lg:h-[600px]">
           {solutions.map((solution, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.7, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -15, scale: 1.02 }}
-              className="group relative h-full rounded-[48px] overflow-hidden border border-white/5 bg-[#0a0d16] hover:border-primary/40 transition-all duration-700 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)]"
+              whileHover={{ y: -8, scale: 1.01 }}
+              className="group relative h-full rounded-2xl overflow-hidden border border-white/5 bg-[#0f172a] hover:border-blue-500/30 transition-all duration-500 shadow-2xl"
             >
               <Image
                 src={solution.image}
                 alt={solution.title}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
-                className="object-cover opacity-15 grayscale group-hover:grayscale-0 group-hover:opacity-40 group-hover:scale-110 transition-all duration-1000"
+                className="object-cover opacity-20 grayscale group-hover:grayscale-0 group-hover:opacity-40 group-hover:scale-105 transition-all duration-1000 mix-blend-overlay"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0d16] via-[#0a0d16]/80 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/90 to-transparent" />
 
-              <div className="absolute inset-0 p-12 flex flex-col justify-end">
+              <div className="absolute inset-0 p-8 lg:p-10 flex flex-col justify-end">
                 <div className="flex justify-between items-start mb-auto">
-                  <span className="px-4 py-1.5 rounded-full bg-primary/20 backdrop-blur-md border border-primary/30 text-[9px] font-black text-primary uppercase tracking-[0.3em] shadow-lg">
+                  <span className="px-3 py-1.5 rounded-md bg-blue-500/10 backdrop-blur-md border border-blue-500/20 text-[9px] font-black text-blue-400 uppercase tracking-[0.2em] shadow-lg">
                     {solution.badge}
                   </span>
                 </div>
 
-                <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-10 group-hover:bg-primary group-hover:text-slate-900 transition-all duration-500 group-hover:rotate-6 shadow-2xl backdrop-blur-sm">
-                  <solution.icon size={32} />
+                <div className="w-14 h-14 rounded-xl bg-[#0a0d16] border border-white/5 flex items-center justify-center text-gray-300 mb-8 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-500 transition-all duration-500 shadow-inner group-hover:shadow-[0_0_20px_rgba(37,99,235,0.4)]">
+                  <solution.icon size={24} strokeWidth={2} />
                 </div>
 
-                <h3 className="text-headline-md text-white mb-6 uppercase">
+                <h3 className="font-display text-xl lg:text-2xl font-bold text-white mb-4 uppercase tracking-wide">
                   {solution.title}
                 </h3>
 
-                <p className="text-gray-400 text-body-md mb-10">
+                <p className="font-sans text-sm text-gray-400 font-light leading-relaxed mb-8">
                   {solution.description}
                 </p>
 
-                <div className="space-y-4 mb-12">
+                <div className="space-y-3 mb-10">
                   {solution.features.map((feature, fIdx) => (
-                    <div key={fIdx} className="flex items-center gap-4 text-label-sm text-gray-400">
-                      <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
-                        <CheckCircle2 size={12} className="text-primary" />
-                      </div>
-                      <span className="uppercase">{feature}</span>
+                    <div key={fIdx} className="flex items-center gap-3 font-sans text-xs font-medium text-gray-400 uppercase tracking-wider">
+                      <CheckCircle2 size={14} className="text-blue-500 shrink-0" />
+                      <span>{feature}</span>
                     </div>
                   ))}
                 </div>
 
                 <Link
                   href={solution.link}
-                  className="group/btn w-full py-6 rounded-2xl bg-white/5 border border-white/10 text-white text-label-md text-center flex items-center justify-center gap-4 hover:bg-white/10 hover:text-white transition-all duration-500 uppercase shadow-xl backdrop-blur-sm active:scale-95"
+                  className="group/btn w-full py-4 rounded-lg bg-white/5 border border-white/10 text-white font-bold text-xs text-center flex items-center justify-center gap-3 hover:bg-blue-600 hover:border-blue-500 transition-all duration-300 uppercase tracking-widest backdrop-blur-sm active:scale-95"
                 >
-                  CONFIGURAR PLAN <ArrowRight size={18} className="group-hover/btn:translate-x-2 transition-transform" />
+                  Configurar Plan <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
                 </Link>
               </div>
             </motion.div>
@@ -159,7 +158,7 @@ export const EmprendedoresHome = () => {
       </div>
 
       {/* Dynamic Floor Element */}
-      <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-50" />
+      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" />
     </section>
   );
 };
