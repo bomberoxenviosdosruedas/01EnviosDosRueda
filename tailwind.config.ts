@@ -1,82 +1,41 @@
-import type { Config } from "tailwindcss"
+import type { Config } from 'tailwindcss';
 
-const config: Config = {
-  darkMode: ["class"],
+export default {
   content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  prefix: "",
   theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
     extend: {
       colors: {
-        brand: {
-          blue: {
-            DEFAULT: "#0636A5",
-            50: "#E6EEFE",
-            100: "#BACEFD",
-            300: "#76A0FA",
-            500: "#0950F6",
-            700: "#0636A5",
-            900: "#042470",
-            950: "#021440",
-            ink: "#00277C",
-          },
-          yellow: {
-            DEFAULT: "#FFEC01",
-            50: "#FFFEE6",
-            100: "#FFFBAA",
-            400: "#FFF133",
-            500: "#FFEC01",
-            600: "#E6D400",
-          },
-          white: {
-            DEFAULT: "#FFFFFF",
-            50: "#FFFFFF",
-          },
+        'brand-blue': {
+          50: '#E6EEFE',
+          100: '#BACEFD',
+          200: '#8EAFFB',
+          300: '#628FF9',
+          400: '#3570F8',
+          500: '#0950F6',
+          600: '#0742CA',
+          700: '#0636A5',
+          800: '#052D8C',
+          900: '#04236B',
+          950: '#021440',
         },
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+        'brand-yellow': {
+          50: '#FFFDE6',
+          100: '#FFFAB8',
+          200: '#FFF78A',
+          300: '#FFF45C',
+          400: '#FFF12E',
+          500: '#FFEC01',
+          600: '#E6D400',
         },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+        'brand-white': {
+          50: '#FFFFFF',
         },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
+        'brand-ink': '#00277C',
+        'brand-dark': '#001035',
       },
       fontFamily: {
         sans: ['var(--font-sans)', 'Outfit', 'IBM Plex Sans', 'Inter', 'sans-serif'],
@@ -85,62 +44,95 @@ const config: Config = {
         subheading: ['var(--font-subheading)', 'Bebas Neue', 'sans-serif'],
         mono: ['var(--font-mono)', 'Geist Mono', 'monospace'],
       },
-      borderRadius: {
-        xl: "1.5rem",
-        lg: "1rem",
-        md: "0.75rem",
-        DEFAULT: "0.5rem",
-        sm: "0.25rem",
-        full: "9999px",
+      fontSize: {
+        '2xs': '0.625rem',
+        '9xl': '9rem',
+      },
+      lineHeight: {
+        'hero': '0.8',
+        'tight': '1.25',
+        'relaxed': '1.625',
+      },
+      letterSpacing: {
+        'tighter': '-0.05em',
+        'tight': '-0.025em',
+        'wide': '0.025em',
+        'wider': '0.05em',
+        'widest': '0.1em',
+        'mega': '0.2em',
       },
       spacing: {
-        base: "4px",
-        xs: "4px",
-        sm: "8px",
-        md: "16px",
-        lg: "32px",
-        xl: "64px",
-        gutter: "16px",
-        "margin-mobile": "16px",
-        "margin-desktop": "32px",
-        "container-max": "1400px",
+        'section-y': '6rem',
+        'section-y-tight': '3rem',
+        'container-max': '80rem',
+        'control-sm': '2.25rem',
+        'control': '2.5rem',
+        'control-lg': '2.75rem',
+        'control-xl': '3.5rem',
+        'control-2xl': '4rem',
       },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
-        "h-scroll": {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-50%)" },
-        },
-        float: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-10px)" },
-        },
-        "spin-slow": {
-          from: { transform: "rotate(0deg)" },
-          to: { transform: "rotate(360deg)" },
-        },
+      borderRadius: {
+        'sm': '0.375rem',
+        'md': '0.5rem',
+        'lg': '0.75rem',
+        'xl': '1rem',
+        '2xl': '1.5rem',
+        '3xl': '2rem',
+        '4xl': '2.5rem',
+      },
+      boxShadow: {
+        'glow-blue': '0 0 25px rgba(0, 39, 124, 0.25)',
+        'glow-yellow': '0 0 25px rgba(255, 236, 1, 0.35)',
+        'glow-blue-lg': '0 0 50px rgba(0, 39, 124, 0.35)',
+        'glow-yellow-lg': '0 0 50px rgba(255, 236, 1, 0.5)',
+        'accent-sm': '0 2px 4px rgba(255, 236, 1, 0.15)',
+        'accent-md': '0 4px 8px rgba(255, 236, 1, 0.2), 0 2px 4px rgba(255, 236, 1, 0.1)',
+        'accent-lg': '0 8px 16px rgba(255, 236, 1, 0.3), 0 4px 8px rgba(255, 236, 1, 0.2)',
+        'float-shadow': '0 25px 50px -12px rgba(0, 39, 124, 0.15)',
+        'bezel-inner': 'inset 0 1px 0 rgba(255,255,255,0.1)',
+        'elevated': '0 20px 40px -8px rgba(6,54,165,0.2), 0 8px 16px -4px rgba(6,54,165,0.12)',
+        'hover-lift': '0 32px 64px -12px rgba(6,54,165,0.25)',
+        'cta-glow': '0 0 40px rgba(255,236,1,0.4), 0 0 80px rgba(255,236,1,0.15)',
+        'panel': '0 32px 120px -20px rgba(6,54,165,0.15)',
+        'minimal': '0 4px 20px -2px rgba(6, 54, 165, 0.04), 0 2px 6px -1px rgba(6, 54, 165, 0.02)',
+        'soft-elevation': '0 12px 24px -10px rgba(6, 54, 165, 0.12)',
+        'antigravity-deep': '0 30px 60px -15px rgba(6, 54, 165, 0.3), 0 0 50px -10px rgba(255, 236, 1, 0.15)',
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-        "h-scroll": "h-scroll 45s linear infinite",
-        float: "float 6s ease-in-out infinite",
-        "spin-slow": "spin-slow 8s linear infinite",
+        'float-slow': 'float-slow 4s ease-in-out infinite',
+        'pulse-subtle': 'pulse-subtle 3s ease-in-out infinite',
+        'border-pulse': 'border-pulse 2s ease-in-out infinite',
+        'counter-up': 'counter-up 0.8s cubic-bezier(0.22,1,0.36,1) forwards',
+        'shimmer': 'shimmer 2.5s ease-in-out infinite',
+        'logos-scroll': 'logos-scroll 30s linear infinite',
       },
-      fontFamily: {
-        sans: ["var(--font-roboto)", "sans-serif"],
-        display: ["var(--font-orbitron)", "monospace"],
-      },
+      keyframes: {
+        'float-slow': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-5px)' },
+        },
+        'pulse-subtle': {
+          '0%, 100%': { opacity: '1', transform: 'scale(1)' },
+          '50%': { opacity: '0.85', transform: 'scale(1.03)' },
+        },
+        'border-pulse': {
+          '0%, 100%': { borderColor: 'rgba(255,236,1,0.3)' },
+          '50%': { borderColor: 'rgba(255,236,1,0.8)' },
+        },
+        'shimmer': {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
+        },
+        'counter-up': {
+          'from': { opacity: '0', transform: 'translateY(8px)' },
+          'to': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'logos-scroll': {
+          'from': { transform: 'translateX(0)' },
+          'to': { transform: 'translateX(-50%)' },
+        },
+      }
     },
   },
-  plugins: [require("tailwindcss-animate")],
-} satisfies Config
-
-export default config
+  plugins: [],
+} satisfies Config;
