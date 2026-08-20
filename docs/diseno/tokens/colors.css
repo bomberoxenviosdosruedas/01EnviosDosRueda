@@ -1,0 +1,71 @@
+:root{
+  /* Brand base (from AGENTS.md / globals.css) */
+  --brand-blue:#0636a5;
+  --brand-yellow:#ffec01;
+  --brand-white:#ffffff;
+  /* Alternate yellow documented in docs/blueprint.md */
+  --brand-yellow-alt:#fff12e;
+  --brand-blue-deep:#041f5e;
+  --brand-blue-ink:#0b1424;
+
+  /* Shadcn HSL channels — exact values from src/app/globals.css */
+  --background:0 0% 100%; /* @kind color */
+  --foreground:222 47% 11%; /* @kind color */
+  --card:0 0% 100%; /* @kind color */
+  --card-foreground:222 47% 11%; /* @kind color */
+  --popover:0 0% 100%; /* @kind color */
+  --popover-foreground:222 47% 11%; /* @kind color */
+  --primary:222 93% 33%; /* @kind color */
+  --primary-foreground:0 0% 100%; /* @kind color */
+  --secondary:56 100% 50%; /* @kind color */
+  --secondary-foreground:222 93% 10%; /* @kind color */
+  --muted:210 40% 96.1%; /* @kind color */
+  --muted-foreground:215.4 16.3% 46.9%; /* @kind color */
+  --accent:56 100% 50%; /* @kind color */
+  --accent-foreground:222 93% 10%; /* @kind color */
+  --destructive:0 84.2% 60.2%; /* @kind color */
+  --destructive-foreground:210 40% 98%; /* @kind color */
+  --border:214.3 31.8% 91.4%; /* @kind color */
+  --input:214.3 31.8% 91.4%; /* @kind color */
+  --ring:222 93% 33%; /* @kind color */
+
+  /* Semantic aliases — resolved colors, use these in components */
+  --color-background:hsl(var(--background));
+  --color-foreground:hsl(var(--foreground));
+  --surface-page:hsl(var(--background));
+  --surface-card:hsl(var(--card));
+  --surface-muted:hsl(var(--muted));
+  --surface-invert:var(--brand-blue);
+  --surface-glass:rgba(255,255,255,0.06);
+  --surface-tint-blue:#f0f4ff;
+
+  --text-body:hsl(var(--foreground));
+  --text-muted:hsl(var(--muted-foreground));
+  --text-heading:var(--brand-blue);
+  --text-on-invert:#ffffff;
+  --text-on-accent:hsl(var(--secondary-foreground));
+
+  --action-primary:hsl(var(--primary));
+  --action-primary-fg:hsl(var(--primary-foreground));
+  --action-primary-hover:color-mix(in srgb,hsl(var(--primary)) 90%,transparent);
+  --action-accent:hsl(var(--secondary));
+  --action-accent-fg:hsl(var(--secondary-foreground));
+  --action-accent-hover:#ffe200;
+  --action-danger:hsl(var(--destructive));
+  --action-danger-fg:hsl(var(--destructive-foreground));
+
+  --border-subtle:hsl(var(--border));
+  --border-on-invert:rgba(255,255,255,0.10);
+  --focus-ring:hsl(var(--ring));
+}
+.dark{
+  --background:222 47% 11%; /* @kind color */--foreground:210 40% 98%; /* @kind color */
+  --card:222 47% 11%; /* @kind color */--card-foreground:210 40% 98%; /* @kind color */
+  --popover:222 47% 11%; /* @kind color */--popover-foreground:210 40% 98%; /* @kind color */
+  --primary:210 40% 98%; /* @kind color */--primary-foreground:222 93% 33%; /* @kind color */
+  --secondary:217.2 32.6% 17.5%; /* @kind color */--secondary-foreground:210 40% 98%; /* @kind color */
+  --muted:217.2 32.6% 17.5%; /* @kind color */--muted-foreground:215 20.2% 65.1%; /* @kind color */
+  --accent:217.2 32.6% 17.5%; /* @kind color */--accent-foreground:210 40% 98%; /* @kind color */
+  --destructive:0 62.8% 30.6%; /* @kind color */--destructive-foreground:210 40% 98%; /* @kind color */
+  --border:217.2 32.6% 17.5%; /* @kind color */--input:217.2 32.6% 17.5%; /* @kind color */--ring:212.7 26.8% 83.9%; /* @kind color */
+}

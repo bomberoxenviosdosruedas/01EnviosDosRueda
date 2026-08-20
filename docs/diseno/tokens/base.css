@@ -1,0 +1,5 @@
+body{margin:0;background:var(--surface-page);color:var(--text-body);font:var(--type-body)}
+h1,h2,h3,h4,h5,h6{font-family:var(--font-headline);text-transform:uppercase;line-height:var(--leading-none);margin:0}
+a{color:var(--action-primary);text-decoration:none;transition:color var(--dur-fast) var(--ease-out)}
+a:hover{color:var(--brand-yellow)}
+*{box-sizing:border-box}

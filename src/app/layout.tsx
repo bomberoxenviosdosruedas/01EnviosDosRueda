@@ -1,26 +1,40 @@
 import type { Metadata, Viewport } from "next";
-import { Roboto, Orbitron } from "next/font/google";
+import { Anton, Bebas_Neue, Outfit, Geist_Mono } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 import { WhatsAppReviewButton } from "@/components/seo/WhatsAppReviewButton";
 import "./globals.css";
 
-const roboto = Roboto({
+const anton = Anton({
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-roboto",
+  weight: "400",
+  variable: "--font-display",
   display: 'swap',
 });
 
-const orbitron = Orbitron({
+const bebasNeue = Bebas_Neue({
   subsets: ["latin"],
-  weight: ["400", "700", "900"],
-  variable: "--font-orbitron",
+  weight: "400",
+  variable: "--font-subheading",
+  display: 'swap',
+});
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "900"],
+  variable: "--font-sans",
+  display: 'swap',
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-mono",
   display: 'swap',
 });
 
 export const viewport: Viewport = {
-  themeColor: "#050810",
-  colorScheme: "dark",
+  themeColor: "#0636A5",
+  colorScheme: "light dark",
   width: 'device-width',
   initialScale: 1,
 };
@@ -150,7 +164,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${roboto.variable} ${orbitron.variable} font-sans antialiased`}
+        className={`${anton.variable} ${bebasNeue.variable} ${outfit.variable} ${geistMono.variable} font-sans antialiased`}
       >
         {children}
         <WhatsAppReviewButton />

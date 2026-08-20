@@ -19,6 +19,31 @@ const config: Config = {
     },
     extend: {
       colors: {
+        brand: {
+          blue: {
+            DEFAULT: "#0636A5",
+            50: "#E6EEFE",
+            100: "#BACEFD",
+            300: "#76A0FA",
+            500: "#0950F6",
+            700: "#0636A5",
+            900: "#042470",
+            950: "#021440",
+            ink: "#00277C",
+          },
+          yellow: {
+            DEFAULT: "#FFEC01",
+            50: "#FFFEE6",
+            100: "#FFFBAA",
+            400: "#FFF133",
+            500: "#FFEC01",
+            600: "#E6D400",
+          },
+          white: {
+            DEFAULT: "#FFFFFF",
+            50: "#FFFFFF",
+          },
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -52,6 +77,12 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+      },
+      fontFamily: {
+        display: ["var(--font-display)", "sans-serif"],
+        subheading: ["var(--font-subheading)", "sans-serif"],
+        sans: ["var(--font-sans)", "sans-serif"],
+        mono: ["var(--font-mono)", "monospace"],
       },
       borderRadius: {
         xl: "1.5rem",

@@ -50,23 +50,23 @@ const Footer = dynamic(() => import("@/components/homenew/footer").then(mod => m
 
 export default function HomePage() {
   return (
-    <div className="dark min-h-screen bg-background text-foreground selection:bg-primary/30 flex flex-col">
+    <div className="dark min-h-screen bg-brand-blue-950 text-white selection:bg-brand-yellow-500 selection:text-brand-ink flex flex-col font-sans">
       <OptimizedHeader />
       <main className="flex-grow">
-        <div className="bg-gradient-to-b from-background via-slate-950/20 to-slate-950">
-          {/* Above the fold (LCP Critical) - Renderizado estático inicial para performance extrema */}
+        <div className="bg-gradient-to-b from-brand-blue-950 via-brand-blue-900 to-brand-blue-950">
+          {/* Above the fold (LCP Critical) */}
           <HeroAnimado />
 
-          {/* Below the fold (Lazy loaded to reduce TBT and Script Evaluation) */}
+          {/* Below the fold */}
           <VisionSection />
         </div>
 
-        <div className="bg-gradient-to-b from-slate-950 via-slate-900 to-background">
+        <div className="bg-gradient-to-b from-brand-blue-950 via-brand-blue-900 to-brand-blue-950">
           <ServicesOverview />
           <CtaSection />
         </div>
 
-        <div className="bg-gradient-to-b from-background via-slate-950 to-background">
+        <div className="bg-gradient-to-b from-brand-blue-950 via-brand-blue-900 to-brand-blue-950">
           <EmprendedoresHome />
           <SliderServicios />
           <CarruselRedes />

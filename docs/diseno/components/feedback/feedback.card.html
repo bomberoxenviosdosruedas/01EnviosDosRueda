@@ -1,0 +1,22 @@
+<!-- @dsCard group="Components" viewport="700x420" name="Feedback" subtitle="Alerts, progress, toasts, tooltip and modal" -->
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css"><style>body{margin:0;padding:20px;background:var(--surface-page)}.row{display:flex;flex-wrap:wrap;gap:16px;align-items:center}</style></head>
+<body><div id="root"></div><script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+const { Button,Badge,Card,CardHeader,CardTitle,CardContent,CardFooter,Separator,Skeleton,Avatar,Input,Textarea,Label,Checkbox,RadioGroup,Switch,Select,Slider,Alert,Progress,Toast,Tooltip,Dialog,Tabs,Accordion,NavItem,Table,StatBlock } = window.EnviosDosruedasDesignSystem_a2df0d;
+function Demo(){const [open,setOpen]=React.useState(false);return (<div style={{display:"grid",gap:16}}>
+<Alert title="Envío en camino">El cadete retiró el paquete a las 14:20.</Alert>
+<Alert variant="accent" title="Zona con demora">Estamos recalculando la ruta al puerto.</Alert>
+<Alert variant="destructive" title="Pago rechazado">Revisá los datos de facturación.</Alert>
+<div style={{display:"grid",gap:8}}><Label eyebrow>Estado de la entrega</Label><Progress value={62}/><Progress value={38} accent/></div>
+<div className="row" style={{gap:16,alignItems:"flex-start"}}>
+<Toast title="Envío creado" description="Un cadete está en camino."/>
+<Toast variant="invert" title="Cotización lista" description="$4.600 ARS · 3,7 km"/></div>
+<div className="row"><Tooltip content="Tarifa con IVA incluido"><Button variant="outline" size="sm">Hover me</Button></Tooltip>
+<Button onClick={()=>setOpen(true)}>Abrir modal</Button></div>
+<Dialog open={open} onClose={()=>setOpen(false)} title="Confirmar envío" description="Se coordinará por WhatsApp al 223 660-2699." footer={<><Button variant="ghost" onClick={()=>setOpen(false)}>Cancelar</Button><Button variant="secondary" onClick={()=>setOpen(false)}>Confirmar</Button></>}/>
+</div>);}
+ReactDOM.createRoot(document.getElementById("root")).render(<Demo/>);
+</script></body></html>

@@ -1,0 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+@font-face{font-family:"Anton SC";font-style:normal;font-weight:400;font-display:swap;src:url("../assets/fonts/AntonSC-Regular.ttf") format("truetype")}
+@font-face{font-family:"Bebas Neue";font-style:normal;font-weight:400;font-display:swap;src:url("../assets/fonts/BebasNeue-Regular.ttf") format("truetype")}
+:root{
+  --font-headline:"Anton SC",sans-serif;
+  --font-subheading:"Bebas Neue",sans-serif;
+  --font-body:"Outfit",sans-serif;
+  --font-code:monospace;
+  --font-display:var(--font-headline);
+}

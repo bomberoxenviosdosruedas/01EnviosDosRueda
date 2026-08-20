@@ -1,0 +1,31 @@
+:root{
+  --radius:0.75rem;                 /* --radius from globals.css */
+  --radius-sm:0.375rem;
+  --radius-md:0.5rem;               /* rounded-md controls */
+  --radius-lg:0.5rem;               /* Card: rounded-lg */
+  --radius-xl:0.75rem;
+  --radius-2xl:1rem;
+  --radius-3xl:1.5rem;
+  --radius-4xl:2.5rem;              /* rounded-[2.5rem] feature panels */
+  --radius-full:9999px;
+
+  --shadow-sm:0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-lg:0 10px 15px -3px rgb(0 0 0 / 0.1),0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl:0 20px 25px -5px rgb(0 0 0 / 0.1),0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-2xl:0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --shadow-panel:0 32px 120px -20px rgba(6,54,165,0.15);
+  --shadow-accent:0 12px 40px -6px rgba(255,236,1,0.3);
+  --shadow-accent-hover:0 6px 25px rgba(255,236,1,0.4);
+  --glow-yellow:0 0 10px rgba(255,236,1,0.8); /* @kind shadow */
+
+  --blur-glass:12px; /* @kind other */
+  --blur-bloom:100px; /* @kind other */
+
+  --ease-out:cubic-bezier(0,0,0.2,1); /* @kind other */
+  --dur-fast:200ms; /* @kind other */
+  --dur:300ms; /* @kind other */
+  --dur-slow:500ms; /* @kind other */
+  --press-scale:0.98; /* @kind other */
+  --hover-lift-scale:1.03; /* @kind other */
+  --hover-icon-scale:1.1; /* @kind other */
+}

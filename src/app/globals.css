@@ -4,62 +4,95 @@
 
 @layer base {
   :root {
-    --font-roboto: var(--font-sans-fallback);
-    --font-orbitron: var(--font-display-fallback);
-    --font-sans: var(--font-roboto);
-    --font-display: var(--font-orbitron);
+    --font-display: var(--font-display);
+    --font-subheading: var(--font-subheading);
+    --font-sans: var(--font-sans);
+    --font-mono: var(--font-mono);
 
+    /* Three Official Brand Colors + Refined Scale */
+    --brand-blue: #0636A5;
+    --brand-blue-950: #021440;
+    --brand-blue-700: #0636A5;
+    --brand-blue-500: #0950F6;
+    --brand-blue-100: #BACEFD;
+    --brand-blue-50: #E6EEFE;
+    --brand-ink: #00277C;
+
+    --brand-yellow: #FFEC01;
+    --brand-yellow-600: #E6D400;
+    --brand-yellow-500: #FFEC01;
+    --brand-yellow-400: #FFF133;
+    --brand-yellow-100: #FFFBAA;
+    --brand-yellow-50: #FFFEE6;
+
+    --brand-white: #FFFFFF;
+    --brand-white-50: #FFFFFF;
+
+    /* Semantic HSL tokens */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 224 100% 24%; /* #00277C Deep Blue Ink */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 224 100% 24%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 220 100% 21%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 54 100% 50%;
-    --secondary-foreground: 26 83% 14%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --popover-foreground: 224 100% 24%;
+    
+    --primary: 222 93% 34%; /* #0636A5 Brand Blue */
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 55 100% 50%; /* #FFEC01 Brand Yellow */
+    --secondary-foreground: 222 93% 34%;
+    
+    --muted: 220 90% 95%; /* #E6EEFE Soft Blue */
+    --muted-foreground: 223 80% 45%;
+    
+    --accent: 55 100% 50%;
+    --accent-foreground: 222 93% 34%;
+    
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 222 90% 86%; /* #BACEFD */
+    --input: 222 90% 86%;
+    --ring: 222 93% 34%;
     --radius: 0.75rem;
   }
 
   .dark {
-    --background: 225 57% 4%;
-    --foreground: 210 40% 98%;
-    --card: 225 57% 3.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 225 57% 3.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 54 100% 50%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 54 100% 50%;
-    --secondary-foreground: 26 83% 14%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --background: 222 94% 13%; /* #021440 Midnight Blue Abyss */
+    --foreground: 0 0% 100%;
+    --card: 222 93% 18%;
+    --card-foreground: 0 0% 100%;
+    --popover: 222 93% 18%;
+    --popover-foreground: 0 0% 100%;
+    
+    --primary: 222 93% 34%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 55 100% 50%;
+    --secondary-foreground: 222 93% 34%;
+    
+    --muted: 222 80% 20%;
+    --muted-foreground: 220 90% 86%;
+    
+    --accent: 55 100% 50%;
+    --accent-foreground: 222 93% 34%;
+    
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 217.2 91.2% 59.8%;
-    --surface: 226 37% 6%;
-    --surface-foreground: 210 40% 98%;
-    --raised: 215 100% 34%;
-    --raised-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 222 70% 30%;
+    --input: 222 70% 30%;
+    --ring: 55 100% 50%;
+    --surface: 222 93% 16%;
+    --surface-foreground: 0 0% 100%;
+    --raised: 222 93% 34%;
+    --raised-foreground: 0 0% 100%;
   }
 
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
+    font-family: var(--font-sans), sans-serif;
   }
 }
 

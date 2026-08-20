@@ -77,3 +77,34 @@ const CardFooter = React.forwardRef<
 CardFooter.displayName = "CardFooter"
 
 export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
+
+export interface DoubleBezelCardProps extends React.HTMLAttributes<HTMLDivElement> {
+  outerClassName?: string;
+  innerClassName?: string;
+}
+
+export const DoubleBezelCard = React.forwardRef<HTMLDivElement, DoubleBezelCardProps>(
+  ({ children, className, outerClassName, innerClassName, ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={cn(
+          "group bg-brand-blue-50/80 border border-brand-blue-100 p-2 rounded-2xl shadow-sm transition-all duration-300 hover:shadow-xl hover:border-brand-blue-300",
+          outerClassName,
+          className
+        )}
+        {...props}
+      >
+        <div
+          className={cn(
+            "bg-white p-6 rounded-xl border border-brand-blue-50/50 shadow-sm overflow-hidden h-full",
+            innerClassName
+          )}
+        >
+          {children}
+        </div>
+      </div>
+    );
+  }
+);
+DoubleBezelCard.displayName = "DoubleBezelCard";

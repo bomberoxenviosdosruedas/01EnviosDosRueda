@@ -1,0 +1,20 @@
+<!-- @dsCard group="Components" viewport="700x520" name="Core — Button, Badge, Card" subtitle="Buttons in every variant/size, badges, service cards" -->
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css"><style>body{margin:0;padding:20px;background:var(--surface-page)}.row{display:flex;flex-wrap:wrap;gap:16px;align-items:center}</style></head>
+<body><div id="root"></div><script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+const { Button,Badge,Card,CardHeader,CardTitle,CardContent,CardFooter,Separator,Skeleton,Avatar,Input,Textarea,Label,Checkbox,RadioGroup,Switch,Select,Slider,Alert,Progress,Toast,Tooltip,Dialog,Tabs,Accordion,NavItem,Table,StatBlock } = window.EnviosDosruedasDesignSystem_a2df0d;
+function Demo(){return (<div style={{display:"grid",gap:20}}>
+<div className="row"><Button>Solicitar Envío</Button><Button variant="secondary">Ver Tarifas</Button><Button variant="outline">Rastrear Guía</Button><Button variant="ghost">Ayuda</Button><Button variant="destructive">Cancelar</Button><Button variant="link">Más info</Button><Button disabled>Disabled</Button></div>
+<div className="row"><Button size="sm">sm</Button><Button size="default">default</Button><Button size="lg">lg</Button><Button size="xl">xl</Button><Button size="hero" variant="secondary">Crear Cuenta</Button><Button square variant="secondary">Cotizar Ya →</Button></div>
+<div className="row"><Badge>Default</Badge><Badge variant="secondary">Express 60m</Badge><Badge variant="outline">Outline</Badge><Badge variant="destructive">Demorado</Badge>
+<span style={{background:"var(--brand-blue)",padding:"8px 12px",borderRadius:"var(--radius-full)"}}><Badge variant="glass" dot>Servicio Disponible</Badge></span>
+<Avatar initials="MC"/><Separator orientation="vertical" style={{height:32}}/><Skeleton width={120} height={14}/></div>
+<div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:20}}>
+<Card elevation="2xl"><CardHeader invert><CardTitle>Mensajería Urbana</CardTitle></CardHeader><CardContent style={{paddingTop:"var(--space-6)"}}><p style={{margin:0,color:"var(--text-muted)"}}>Entregas locales en menos de 90 minutos con rastreo en tiempo real.</p></CardContent><CardFooter><StatBlock label="Desde" value="$4.600" unit="ARS"/></CardFooter></Card>
+<Card elevation="2xl" accent><CardHeader><CardTitle style={{color:"var(--text-heading)"}}>E-commerce Flex</CardTitle></CardHeader><CardContent><p style={{margin:0,color:"var(--text-muted)"}}>Solución integral para tiendas online con recolección diaria.</p></CardContent><CardFooter><Badge variant="secondary">Servicio Recomendado</Badge></CardFooter></Card>
+</div></div>);}
+ReactDOM.createRoot(document.getElementById("root")).render(<Demo/>);
+</script></body></html>
