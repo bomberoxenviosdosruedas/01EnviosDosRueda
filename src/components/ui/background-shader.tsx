@@ -1,22 +1,12 @@
 "use client"
 
-import { MeshGradient } from "@paper-design/shaders-react"
+import React from "react"
 
 export default function Waitlist() {
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      <div className="fixed inset-0 z-0">
-        <MeshGradient
-          style={{ height: "100vh", width: "100vw" }}
-          distortion={0.8}
-          swirl={0.1}
-          offsetX={0}
-          offsetY={0}
-          scale={1}
-          rotation={0}
-          speed={1}
-          colors={["hsl(216, 90%, 27%)", "hsl(243, 68%, 36%)", "hsl(205, 91%, 64%)", "hsl(211, 61%, 57%)"]}
-        />
+    <div className="min-h-screen relative overflow-hidden bg-brand-blue-950">
+      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(6,54,165,0.5),transparent_60%),radial-gradient(circle_at_80%_80%,rgba(255,236,1,0.1),transparent_50%)]" />
       </div>
 
       <div className="relative z-10">
