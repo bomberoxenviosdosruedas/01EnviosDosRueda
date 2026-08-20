@@ -79,10 +79,11 @@ const config: Config = {
         },
       },
       fontFamily: {
-        display: ["var(--font-display)", "sans-serif"],
-        subheading: ["var(--font-subheading)", "sans-serif"],
-        sans: ["var(--font-sans)", "sans-serif"],
-        mono: ["var(--font-mono)", "monospace"],
+        sans: ['var(--font-sans)', 'Outfit', 'IBM Plex Sans', 'Inter', 'sans-serif'],
+        display: ['var(--font-display)', 'Anton SC', 'Anton', 'sans-serif'],
+        headline: ['var(--font-display)', 'Anton SC', 'Anton', 'sans-serif'],
+        subheading: ['var(--font-subheading)', 'Bebas Neue', 'sans-serif'],
+        mono: ['var(--font-mono)', 'Geist Mono', 'monospace'],
       },
       borderRadius: {
         xl: "1.5rem",
